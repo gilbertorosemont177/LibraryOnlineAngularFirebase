@@ -1,0 +1,40 @@
+.card-size {
+    max-width: 320px;
+  }
+  
+  .container{
+    max-width: 80%;
+    margin:auto
+
+}
+  .header-img {
+    background-image: url('../../../assets/images/narutomanga.jpg');
+    background-size: cover
+  }
+  .bookspictures{
+    height:  250px  ;
+    width: 200px;
+   
+   
+  }
+  .imgscenter{
+    text-align: center!important;
+       
+  }
+  .imgbookscontents{
+
+    
+    width:  100%
+  }
+  p{
+    font-size: 95%
+  }
+
+  .button-row button,
+.button-row a {
+  margin-right: 8px;
+  background-color: red
+}
+.iconss{
+    color:white!important
+}

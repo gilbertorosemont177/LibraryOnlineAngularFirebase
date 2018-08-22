@@ -15,4 +15,22 @@ export class BooksService {
         
             return LISTEBOOKS.find (b=>b.id===id);
         }
+
+
+        public getBookInfo(bookname:string ): Books []
+         {
+            let listebooks: Books[]=[]
+            for (let book of LISTEBOOKS ){
+
+                let getBookTitre= book.titre.toLowerCase()
+                if(getBookTitre.indexOf(bookname)>-1 ){
+
+                    listebooks.push(book)
+                }
+
+            }
+
+
+            return listebooks
+        }
 }

@@ -17,6 +17,7 @@ import { NgModule } from '@angular/core';
 //services
 import { BooksService } from "./component/books/books.service";
 import { BookdetailComponent } from './component/bookdetail/bookdetail.component';
+import { SearchbookComponent } from './component/searchbook/searchbook.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { BookdetailComponent } from './component/bookdetail/bookdetail.component
     AboutComponent,
     BooksComponent,
     InscriptionComponent,
-    BookdetailComponent
+    BookdetailComponent,
+    SearchbookComponent
   ],
   imports: [
     BrowserModule,

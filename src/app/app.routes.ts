@@ -5,15 +5,16 @@ import { AboutComponent} from './component/about/about.component';
 import { HomeComponent } from './component/home/home.component';
  import { InscriptionComponent } from './component/inscription/inscription.component';
 import { BookdetailComponent } from './component/bookdetail/bookdetail.component';
-
-// import { PageNotFoundComponent } from './';
+import {SearchbookComponent} from './component/searchbook/searchbook.component'
+ // import { PageNotFoundComponent } from './';
 
 const APP_ROUTES: Routes = [
     {path:'home',component:HomeComponent },
     {path:'',pathMatch:'full',redirectTo:'home'},
     { path: 'about', component: AboutComponent },
     {path:'inscription',component:InscriptionComponent},
-    {path:'bookdetail/:id',component:BookdetailComponent}
+    {path:'bookdetail/:id',component:BookdetailComponent},
+    {path: 'search/:bookname', component:SearchbookComponent}
     
 
     

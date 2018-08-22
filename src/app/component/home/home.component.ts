@@ -10,6 +10,7 @@ import {Router  } from "@angular/router";
 export class HomeComponent implements OnInit {
 
 
+  effetcss:string;
   listebooks:Books[];
   constructor(  private ListeB:BooksService, private route:Router) { 
 
@@ -32,4 +33,13 @@ export class HomeComponent implements OnInit {
 
       this.route.navigate(['/bookdetail',id])
   }
+
+  // changeEffet($event){
+
+  //   if($event.type=='mouseover'){
+  //     this.effetcss='animated swing'
+  //     console.log("hello")
+  //   }
+
+  //  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router'
+import {ActivatedRoute,Router} from '@angular/router'
 import { BooksService } from '../books/books.service';
 import { Books } from '../books/books.interface';
 @Component({
@@ -10,16 +10,23 @@ import { Books } from '../books/books.interface';
 export class SearchbookComponent implements OnInit {
 
   bookresult:Books[];
+  bookname:string;
 
-  constructor(private booksservice:BooksService , private routes:ActivatedRoute) { }
+  constructor(private booksservice:BooksService , private param:ActivatedRoute, private route:Router) { }
 
   ngOnInit() {
 
-      this.routes.params.subscribe((result) => {
+      this.param.params.subscribe((result) => {
+        this.bookname=result['bookname']
         this.bookresult=this.booksservice.getBookInfo(result['bookname'])
 
       } )
 
+  }
+
+  infoBookbyId(id:number){
+
+    this.route.navigate(['/bookdetail',id])
   }
 
 }

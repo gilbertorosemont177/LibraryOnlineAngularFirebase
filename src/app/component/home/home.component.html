@@ -4,12 +4,12 @@
 <div  class="row" >
 <!-- ng for-->
 
-  <div class="col-sm-3 mb-3 mt-3" *ngFor="let book of listebooks">
-  <mat-card class="card-size">
+  <div class="col-sm-3 mb-3 mt-3 " *ngFor="let book of listebooks">
+  <mat-card class="card-size ">
     <mat-card-header>
       <div mat-card-avatar class="header-img"></div>
       <mat-card-title>{{book.titre}}</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      <mat-card-subtitle  >Dog Breed</mat-card-subtitle>
     </mat-card-header>
    
   
@@ -27,7 +27,7 @@
            
            
                <button mat-fab (click)="infoBookbyId(book.id)" >
-                <mat-icon class="iconss" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+                <mat-icon  class="iconss"  aria-label="Example icon-button with a heart icon">favorite</mat-icon>
               </button>
              
            
@@ -39,5 +39,6 @@
 </div>
 
 </div>
+
 
 </div>

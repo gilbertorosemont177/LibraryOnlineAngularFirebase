@@ -29,8 +29,6 @@ export class BooksService {
                 }
 
             }
-
-
             return listebooks
         }
 }

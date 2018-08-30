@@ -10,6 +10,7 @@ import { LoginServiceFireBase } from "./../login/login.service";
 export class HomeuserComponent implements OnInit {
 
   listebookOfFireDB;
+  username:string;
   constructor(private serviceFirebase:LoginServiceFireBase,
     private firestoreBase:LoginServiceFireBase, private authentification:AngularFireAuth
   ) { }
@@ -19,8 +20,9 @@ export class HomeuserComponent implements OnInit {
     this.authentification.auth.onAuthStateChanged((user)=>{
       if(user){
         console.log(user.email)
+        this.username=user.displayName
         this.listebookOfFireDB   = this.firestoreBase.getAllBooks()
-    
+        
       }
 
     })

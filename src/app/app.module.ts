@@ -28,6 +28,7 @@ import {FIREBASECONFIG  } from "./../FIREBASECONFIG/firebase.config";
 //services
 import { BooksService } from "./component/books/books.service";
 import {LoginServiceFireBase  } from "./component/login/login.service";
+import { WaitingComponent } from './component/waiting/waiting.component';
 
 
 
@@ -43,7 +44,8 @@ import {LoginServiceFireBase  } from "./component/login/login.service";
     BookdetailComponent,
     SearchbookComponent,
     LoginComponent,
-    HomeuserComponent
+    HomeuserComponent,
+    WaitingComponent
   
   ],
   imports: [

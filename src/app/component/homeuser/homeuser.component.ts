@@ -27,4 +27,10 @@ export class HomeuserComponent implements OnInit {
    
     }
 
+    logout():void{
+
+        this.firestoreBase.sigOut()
+
+    }
+
 }

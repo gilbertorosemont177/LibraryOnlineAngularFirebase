@@ -8,6 +8,8 @@ import { BookdetailComponent } from './component/bookdetail/bookdetail.component
 import {SearchbookComponent} from './component/searchbook/searchbook.component'
 import {HomeuserComponent  } from "./component/homeuser/homeuser.component";
 import {LoginComponent  } from "./component/login/login.component";
+import { WaitingComponent } from './component/waiting/waiting.component';
+
  // import { PageNotFoundComponent } from './';
 
 const APP_ROUTES: Routes = [
@@ -18,7 +20,8 @@ const APP_ROUTES: Routes = [
     {path:'bookdetail/:id',component:BookdetailComponent},
     {path: 'search/:bookname', component:SearchbookComponent},
     {path:'succes', component:HomeuserComponent},
-    {path:'login',component:LoginComponent}
+    {path:'login',component:LoginComponent},
+    {path:'waiting',component:WaitingComponent}
 
     
 

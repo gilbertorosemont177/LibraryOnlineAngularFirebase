@@ -54,10 +54,22 @@
     </mat-card-content>
     <mat-card-actions class="mb-4">
         <div class="button-row pl-5  ">
+          <div class="row">
             <button (click)="createUser(emails.value,passwords.value,username.value)"  mat-flat-button color="primary">S'enregistrer</button>
             <button mat-flat-button color="accent">Annuler</button>
-            </div>
+          </div>
+          <div class="row mt-4">
+           
+              <button class="loginBtn loginBtn--facebook">
+                  Login with Facebook
+                </button>
+                
+                <button class="loginBtn loginBtn--google">
+                  Login with Google
+                </button>
 
+            </div>
+          </div>
 
     </mat-card-actions>
   </mat-card>

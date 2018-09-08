@@ -29,6 +29,7 @@ import {FIREBASECONFIG  } from "./../FIREBASECONFIG/firebase.config";
 import { BooksService } from "./component/books/books.service";
 import {LoginServiceFireBase  } from "./component/login/login.service";
 import { WaitingComponent } from './component/waiting/waiting.component';
+import { ConfirmationemailComponent } from './component/confirmationemail/confirmationemail.component';
 
 
 
@@ -45,7 +46,8 @@ import { WaitingComponent } from './component/waiting/waiting.component';
     SearchbookComponent,
     LoginComponent,
     HomeuserComponent,
-    WaitingComponent
+    WaitingComponent,
+    ConfirmationemailComponent
   
   ],
   imports: [

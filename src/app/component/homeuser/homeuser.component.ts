@@ -19,7 +19,8 @@ export class HomeuserComponent implements OnInit {
 
     this.authentification.auth.onAuthStateChanged((user)=>{
       if(user){
-        console.log(user.email)
+        console.log("EMAIL -GT:"+user.email)
+        console.log("EMAIL VERIFIED -GT"+user.emailVerified)
         this.username=user.displayName
         this.listebookOfFireDB   = this.firestoreBase.getAllBooks()
         

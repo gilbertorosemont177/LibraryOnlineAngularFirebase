@@ -15,26 +15,30 @@ export class LoginComponent implements OnInit {
   constructor( private router:Router,private cnxcurrentuser:AngularFireAuth,private loginservice:LoginServiceFireBase) { }
 
   ngOnInit() {
+    
     var user = this.cnxcurrentuser.auth.currentUser;
-
-if (user) {
- 
-  this.router.navigate(['/succes'])  
-} 
-  
+    if (user.emailVerified==true) {
+        this.router.navigate(['/succes'])  
+    } 
   }
 
   loginfb(username:string,password:string){
       this.loginservice.login(username,password).then(
         
-    ()=>{
+   (user)=>{
       
+      if(user.user.emailVerified==true){
+
       this.router.navigate(['/waiting'])
        setTimeout(()=>{
         
              this.router.navigate(['/succes']) 
           }, 3000)
     }
+    else{
+      this.router.navigate(['/login'])
+    }
+  }
       
     ).catch((errors)=>{
 

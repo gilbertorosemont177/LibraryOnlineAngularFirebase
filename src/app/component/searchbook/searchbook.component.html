@@ -1,0 +1,68 @@
+<div class="container ">
+
+  
+  
+<ng-container *ngIf="bookresult.length==0; else templatesuccessful">
+    <div class=" alert alert-info">
+   
+
+        Aucun livre trouvé avec le nom :<strong> {{bookname}}</strong> 
+       </div>
+
+
+</ng-container>
+<ng-template #templatesuccessful>
+  
+
+    <div class="alert alert-success">
+        <strong>Success!</strong> {{bookresult.length}} resultat contenant le mot : <strong>{{bookname}}</strong> 
+    </div>
+
+
+    <div  class="row mt-4" >
+     
+   
+    
+      <div class="col-sm-4" *ngFor="let book of bookresult">
+      <mat-card class="card-size">
+        <mat-card-header>
+          <div mat-card-avatar class="header-img"></div>
+          <mat-card-title>{{book.titre}}</mat-card-title>
+          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        </mat-card-header>
+       
+      
+        
+         
+              <img  class=" " src={{book.image}}  alt="Photo of a Shiba Inu"/>
+        
+        <mat-card-content>
+          <p>
+            {{book.description}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <div class="button-row">
+               
+               <button mat-fab (click)="infoBookbyId(book.id)" >
+                    <mat-icon class="iconss" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+               </button>
+                 
+               
+         </div>
+        </mat-card-actions>
+      </mat-card>
+    
+    
+    </div>
+    
+    </div>
+
+
+</ng-template>
+
+
+
+    
+    
+    </div>

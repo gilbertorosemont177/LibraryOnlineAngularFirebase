@@ -1,0 +1,67 @@
+
+
+
+
+      
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-login" role="tabpanel" aria-labelledby="nav-home-tab">
+
+
+            <div *ngIf="msg"  class="alert alert-danger" role="alert">
+                {{msg}} 
+          </div>
+            
+            <mat-card class="example-card">
+            
+            <!-- HEADER-->
+              <mat-card-header>
+                    <mat-toolbar  color="primary">
+                        <mat-toolbar-row>
+                          <span>Login</span>
+                          <mat-icon class="example-icon">verified_user</mat-icon>
+                        </mat-toolbar-row>
+                     
+                      </mat-toolbar>
+                </mat-card-header>
+              <!-- body-->
+                <mat-card-content class="ml-3">
+                   
+                            
+                             <div class="example-container mt-3">
+                            <mat-form-field>
+                              <input matInput #username placeholder="Entrez votre username" [formControl]="email" required>
+                              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                            </mat-form-field>
+                          </div>
+                            <div class="example-container mt-3">
+                            <mat-form-field>
+                                <input matInput #password placeholder="Entrez votre password" [type]="hide ? 'password' : 'text'">
+                                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                              </mat-form-field>
+                                </div>
+                                 
+                </mat-card-content>
+                <mat-card-actions class="mb-4">
+                    <div class="button-row pl-5  ">
+                        <button mat-flat-button color="primary" (click)='loginfb(username.value,password.value)'>se connecter</button>
+                     
+                  </div>
+        
+                </mat-card-actions>
+              </mat-card>
+        
+        <!-- 
+              registration -->
+             
+            
+
+
+      
+
+  
+  
+
+
+
+  
+

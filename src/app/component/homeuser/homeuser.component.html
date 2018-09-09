@@ -1,0 +1,16 @@
+<p>
+    succes email firebase works!
+  </p>
+<h1>{{username}} </h1>  
+    
+    <ul>
+    <li *ngFor="let item of listebookOfFireDB | async">
+        {{item.titre}}
+
+    </li>
+    </ul>
+
+
+
+
+    <button mat-button color="accent" (click)="logout()" >Accent</button>

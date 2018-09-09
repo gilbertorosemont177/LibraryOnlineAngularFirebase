@@ -30,7 +30,10 @@ import { BooksService } from "./component/books/books.service";
 import {LoginServiceFireBase  } from "./component/login/login.service";
 import { WaitingComponent } from './component/waiting/waiting.component';
 import { ConfirmationemailComponent } from './component/confirmationemail/confirmationemail.component';
+<<<<<<< HEAD
 import { SigninupComponent } from './component/signinup/signinup.component';
+=======
+>>>>>>> 547b0c5b8e23510ae46501fcce158186518670f6
 
 
 
@@ -48,8 +51,12 @@ import { SigninupComponent } from './component/signinup/signinup.component';
     LoginComponent,
     HomeuserComponent,
     WaitingComponent,
+<<<<<<< HEAD
     ConfirmationemailComponent,
     SigninupComponent
+=======
+    ConfirmationemailComponent
+>>>>>>> 547b0c5b8e23510ae46501fcce158186518670f6
   
   ],
   imports: [

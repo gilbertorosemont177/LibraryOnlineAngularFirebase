@@ -18,6 +18,7 @@
   
   input.example-right-align {
     -moz-appearance: textfield;
+<<<<<<< HEAD
   }
 
   /* inscription */
@@ -146,4 +147,6 @@
   .loginBtn--google:hover,
   .loginBtn--google:focus {
     background: #E74B37;
+=======
+>>>>>>> 547b0c5b8e23510ae46501fcce158186518670f6
   }

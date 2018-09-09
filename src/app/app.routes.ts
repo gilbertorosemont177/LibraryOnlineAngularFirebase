@@ -11,14 +11,14 @@ import {LoginComponent  } from "./component/login/login.component";
 import { WaitingComponent } from './component/waiting/waiting.component';
 import { ConfirmationemailComponent  } from './component/confirmationemail/confirmationemail.component';
 import { SigninupComponent } from "./component/signinup/signinup.component";
-
+import { NavbarComponent } from "./component/shared/navbar/navbar.component";
  // import { PageNotFoundComponent } from './';
 
 const APP_ROUTES: Routes = [
     {path:'home',component:HomeComponent },
     {path:'',pathMatch:'full',redirectTo:'home'},
     { path: 'about', component: AboutComponent },
-    
+    {path:'nav',component:NavbarComponent},
     {path:'bookdetail/:id',component:BookdetailComponent},
     {path: 'search/:bookname', component:SearchbookComponent},
     {path:'succes', component:HomeuserComponent},

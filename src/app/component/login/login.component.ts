@@ -13,21 +13,9 @@ export class LoginComponent implements OnInit {
   hide:boolean=true
   msg:string;
    url:string;
-  constructor(private aroute:ActivatedRoute, private router:Router,private cnxcurrentuser:AngularFireAuth,private loginservice:LoginServiceFireBase) {
-
-    
-
-   }
+  constructor(private aroute:ActivatedRoute, private router:Router,private cnxcurrentuser:AngularFireAuth,private loginservice:LoginServiceFireBase) {}
 
   ngOnInit() {
-            // let user = this.cnxcurrentuser.auth.currentUser;
-
-
-            // if(user){
-            //   if (user.emailVerified==true) {
-            //     this.router.navigate(['/succes'])  
-            //   } 
-            // }
             
   }
 
@@ -40,8 +28,9 @@ export class LoginComponent implements OnInit {
 
       this.router.navigate(['/waiting'])
        setTimeout(()=>{
-        
+
              this.router.navigate(['/succes']) 
+             this.loginservice.changeTitle().emit(user.user.email)
              
           }, 3000)
     }

@@ -1,10 +1,11 @@
-import { Injectable, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Injectable,EventEmitter } from '@angular/core';
 import { AngularFireAuth } from "angularfire2/auth";
 import { Router } from '@angular/router';
 import { AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument  } from "angularfire2/firestore";
+import { Observable } from 'rxjs';
 @Injectable()
 export class LoginServiceFireBase {
-    
+   private logintitle= new EventEmitter<any>();
     public constructor( private fireDatabase:AngularFirestore, private cnx:AngularFireAuth, private router:Router){
     }
     
@@ -43,7 +44,7 @@ export class LoginServiceFireBase {
     public sigOut(){
         this.cnx.auth.signOut().then(()=>{
             this.router.navigate(['/home'])  
-
+            this.changeTitle().emit("Se connecter/S'inscrire")
 
         }  ).catch((error)=>{
             let err=error.message
@@ -52,7 +53,9 @@ export class LoginServiceFireBase {
 
     }
 
-
+    public changeTitle(){
+        return this.logintitle
+    }
 
 
 }

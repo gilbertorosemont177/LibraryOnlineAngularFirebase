@@ -1,13 +1,6 @@
-
-
-
-
-      
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-login" role="tabpanel" aria-labelledby="nav-home-tab">
-
-
-            <div *ngIf="msg"  class="alert alert-danger" role="alert">
+           <div *ngIf="msg"  class="alert alert-danger" role="alert">
                 {{msg}} 
           </div>
             
@@ -42,17 +35,29 @@
                                  
                 </mat-card-content>
                 <mat-card-actions class="mb-4">
-                    <div class="button-row pl-5  ">
+                    <div class="button-row pl-4  ">
                         <button mat-flat-button color="primary" (click)='loginfb(username.value,password.value)'>se connecter</button>
                      
                   </div>
+
+
+
+                  <div class="row mt-4 ml-4">
+           
+                    <button (click)="loginWithFbook()"class="loginBtn loginBtn--facebook">
+                        Se connecter avec Facebook
+                      </button>
+                      
+                      <button (click)="loginWithGoogle()"  class="loginBtn loginBtn--google">
+                        Se connecter avec Gmail
+                      </button>
+      
+                  </div>
         
                 </mat-card-actions>
+
               </mat-card>
         
-        <!-- 
-              registration -->
-             
             
 
 

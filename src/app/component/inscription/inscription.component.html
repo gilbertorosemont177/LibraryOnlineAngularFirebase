@@ -1,6 +1,10 @@
 
 
 <mat-card class="example-card">
+
+   <div *ngIf="msg"  class="alert alert-danger" role="alert">
+                {{msg}} 
+          </div>
 <!-- HEADER-->
   <mat-card-header>
         <mat-toolbar  color="primary">
@@ -8,8 +12,7 @@
               <span>Inscription</span>
               <mat-icon class="example-icon">verified_user</mat-icon>
             </mat-toolbar-row>
-          
-            
+               
           </mat-toolbar>
     </mat-card-header>
   <!-- body-->
@@ -56,18 +59,7 @@
             <button (click)="createUser(emails.value,passwords.value,username.value)"  mat-flat-button color="primary">S'enregistrer</button>
             
           </div>
-          <div class="row mt-4">
-           
-              <button (click)="loginWithFbook()"class="loginBtn loginBtn--facebook">
-                  Login with Facebook
-                </button>
-                
-                <button class="loginBtn loginBtn--google">
-                  Login with Google
-                </button>
-
-            </div>
-          </div>
+       </div>
 
     </mat-card-actions>
   </mat-card>

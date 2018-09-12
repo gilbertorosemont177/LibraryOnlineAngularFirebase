@@ -41,15 +41,26 @@ export class LoginServiceFireBase {
        return this.fireDatabase.collection('books').valueChanges()
 
     }
-    public sigOut(){
+    public signOut(){
         this.cnx.auth.signOut().then(()=>{
-            this.router.navigate(['/home'])  
-            this.changeTitle().emit("Se connecter/S'inscrire")
 
-        }  ).catch((error)=>{
-            let err=error.message
+            console.log("SignOut")
+        }).catch(()=>{
 
-        });
+            console.log("Erreur")
+
+        })
+        // .then(()=>{
+            
+        //     this.router.navigate(['/home'])  
+        //     this.changeTitle().emit("Se connecter/S'inscrire")
+
+        // }  ).catch((error)=>{
+        //     let err=error.message
+
+        // });
+        this.changeTitle().emit("Se connecter/S'inscrire")
+        this.router.navigate(['/home'])  
 
     }
 

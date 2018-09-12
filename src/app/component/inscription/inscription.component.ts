@@ -5,12 +5,6 @@ import { AngularFireAuth, AngularFireAuthModule} from "angularfire2/auth";
 
 import { Router } from '@angular/router';
 
-
-import * as firebase from 'firebase';
-
-
-
-
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
@@ -18,7 +12,7 @@ import * as firebase from 'firebase';
 })
 export class InscriptionComponent  {
 
-
+  msg:string;
   //signup:boolean=false;
 
   useremail:string;
@@ -38,6 +32,8 @@ export class InscriptionComponent  {
             this.router.navigate(['/account']) 
     
           }).catch((error)=>{
+
+
                   console.log(error)
            })
 
@@ -46,6 +42,7 @@ export class InscriptionComponent  {
     }
   
   ).catch((error)=>{
+      this.msg=error.message
         console.log(error.message)
 
   })
@@ -61,36 +58,7 @@ export class InscriptionComponent  {
             '';
   }
 
-  loginWithFbook(){
-    const provider=new firebase.auth.FacebookAuthProvider;
-    provider.addScope('user_birthday');
-    provider.setCustomParameters({
-      'display': 'popup'
-    });
-    
-   
-    this.cnx.auth.signInWithPopup(provider).then((result)=>{
-      
-  // The signed-in user info.
-  var user = result.user;
-  // ...
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-});
-  }
-
-  loginWithGoogle(){
-
-
-
-  }
+  
 
 
 

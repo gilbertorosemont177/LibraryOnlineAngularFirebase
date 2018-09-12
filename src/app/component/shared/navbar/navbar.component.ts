@@ -24,10 +24,10 @@ export class NavbarComponent implements OnInit {
 
 
     if(user){
-     // if (user.emailVerified===true) {
+     
         this.titrelogin=user.email
         console.log("link nav"+this.titrelogin)
-      //} 
+     
     }
   }
   //  

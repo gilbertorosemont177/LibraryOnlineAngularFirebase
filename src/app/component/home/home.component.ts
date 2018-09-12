@@ -13,11 +13,12 @@ export class HomeComponent implements OnInit {
   effetcss:string;
   listebooks:Books[];
   constructor(  private ListeB:BooksService, private route:Router) { 
-
+   console.log("home component")
+   this.getAllBooks() 
   }
 
   ngOnInit() {
-    this.getAllBooks()
+   
 
   }
 

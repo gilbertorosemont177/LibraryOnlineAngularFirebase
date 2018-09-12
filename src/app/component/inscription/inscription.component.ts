@@ -32,14 +32,9 @@ export class InscriptionComponent  {
             this.router.navigate(['/account']) 
     
           }).catch((error)=>{
-
-
-                  console.log(error)
+            console.log(error)
            })
-
-      
-
-    }
+          }
   
   ).catch((error)=>{
       this.msg=error.message
@@ -49,16 +44,26 @@ export class InscriptionComponent  {
 
   }
   
-  email = new FormControl('', [Validators.required, Validators.email]);
+  email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z@._]+$')]);
+  
+  username= new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z._]+$')])
   hide = true;
 
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid email' :
+  getErrorMessageEmail() {
+    return this.email.hasError('required') ? 'Vous devez saisir un email ' :
+        this.email.hasError('email') ? 'email nest pas valide' :this.email.hasError('pattern')
+        ? 'email nest pas correct':this.email.hasError('pattern')?"juste des lettres ou  . _ ":
             '';
   }
 
-  
+  getErrorMessageUsername(){
+    return this.username.hasError('required') ? 'Vous devez saisir un username minimun 4 lettres' :this.username.hasError('pattern')? "Il ya des caracteres pas valides dans votre username "
+:
+    // this.username.hasError('pattern')
+    // ? 'username nest pas correct':
+        '';
+
+  }
 
 
 

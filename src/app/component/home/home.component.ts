@@ -17,10 +17,7 @@ export class HomeComponent implements OnInit {
    this.getAllBooks() 
   }
 
-  ngOnInit() {
-   
-
-  }
+  ngOnInit() {}
 
   getAllBooks():Books[]{
   this.ListeB.getBooks().then(result=> this.listebooks = result);
@@ -35,12 +32,4 @@ export class HomeComponent implements OnInit {
       this.route.navigate(['/bookdetail',id])
   }
 
-  // changeEffet($event){
-
-  //   if($event.type=='mouseover'){
-  //     this.effetcss='animated swing'
-  //     console.log("hello")
-  //   }
-
-  //  }
 }

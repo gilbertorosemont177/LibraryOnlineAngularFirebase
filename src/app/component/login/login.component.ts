@@ -70,9 +70,9 @@ export class LoginComponent implements OnInit {
    
     this.cnxcurrentuser.auth.signInWithPopup(providerFacebook).then((result)=>{
      if(result.user){
-      if(result.user.emailVerified==true){
+     
         this.router.navigate(['/succes']) 
-      }
+      
     }
       else{
         this.router.navigate(['/login']) 
@@ -90,16 +90,19 @@ export class LoginComponent implements OnInit {
   loginWithGoogle(){
 
     const providerGoogle=new firebase.auth.GoogleAuthProvider();
+    providerGoogle.setCustomParameters({
+      prompt: 'select_account'
+   });
     firebase.auth().signInWithPopup(providerGoogle).then((result)=> {
     if(result.user){ 
       
-      if(result.user.emailVerified==true){
+      
            this.router.navigate(['/succes']) 
         
         console.log("depuis login google-1"+result)
     console.log("depuis login google-2"+result.user)
     
-      }
+      
     }
   }).catch((error) =>{
       

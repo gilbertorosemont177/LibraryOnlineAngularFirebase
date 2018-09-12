@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { AngularFireAuth } from "angularfire2/auth";
 import { LoginServiceFireBase } from "./../login/login.service";
 import { Router } from '@angular/router';
@@ -13,7 +12,8 @@ export class HomeuserComponent implements OnInit {
   listebookOfFireDB;
   username:string;
   constructor( private cnxrouter:Router,private firestoreBase:LoginServiceFireBase, private authentification:AngularFireAuth
-  ) { 
+  )
+  { 
     this.authentification.authState.subscribe((user)=>{
       if(user){
         console.log("EMAIL -GT:"+user.email)
@@ -22,21 +22,12 @@ export class HomeuserComponent implements OnInit {
       //  this.listebookOfFireDB   = this.firestoreBase.getAllBooks()
         this.firestoreBase.changeTitle().emit(user.email)
         this.username=user.displayName
-        
-
       }
-
     })
-    
-
   }
 
   ngOnInit() {
 
-    
-
-    
-   
     }
 
     logout():void{

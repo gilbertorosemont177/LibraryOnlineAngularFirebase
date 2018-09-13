@@ -5,43 +5,26 @@ import { AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument  }
 import { Observable } from 'rxjs';
 @Injectable()
 export class LoginServiceFireBase {
-   private logintitle= new EventEmitter<any>();
+   private logintitle= new EventEmitter<string>()
+   public loginwithGmailOrFaceb= new EventEmitter<string>()
     public constructor( private fireDatabase:AngularFirestore, private cnx:AngularFireAuth, private router:Router){
     }
     
     public login( username:string,password:string):Promise<firebase.auth.UserCredential>{
          
        return this.cnx.auth.signInWithEmailAndPassword(username, password)
-    //.then(()=>{
-         
-    //     this.router.navigate(['/succes'])  
-         
-
-       //}
-     
-
-    
-//     ).catch((errors)=> {
-        
-//         // Handle Errors here.
-        
-//     //     var errorCode = errors.code;
-//     //    // var errorMessage = error.message;
-//     //     if (errorCode === 'auth/wrong-password') {
-//     //    //    errorMessage=errors.message
-//     //      // alert('Wrong password.');
-//     //     } else {
-//     //       alert(errorMessage);
-//     //     }
-//    console.log(errors);
-//       });
-
+   
     }
     public getAllBooks(){
        return this.fireDatabase.collection('books').valueChanges()
 
     }
     public signOut(){
+        let provider=localStorage.getItem('provider')
+        if(provider!=null){
+            localStorage.removeItem('provider')
+        }
+        console.log("value de la key provider : "+provider)
         this.cnx.auth.signOut().then(()=>{
 
             console.log("SignOut")
@@ -50,24 +33,20 @@ export class LoginServiceFireBase {
             console.log("Erreur")
 
         })
-        // .then(()=>{
-            
-        //     this.router.navigate(['/home'])  
-        //     this.changeTitle().emit("Se connecter/S'inscrire")
-
-        // }  ).catch((error)=>{
-        //     let err=error.message
-
-        // });
+       
         this.changeTitle().emit("Se connecter/S'inscrire")
-        this.router.navigate(['/home'])  
+        this.router.navigate(['/home'])
+        
 
     }
 
-    public changeTitle(){
+    public changeTitle():EventEmitter<string>{
         return this.logintitle
     }
+    public SigninWithGmailOrFacebook():EventEmitter<string>{
 
+        return this.loginwithGmailOrFaceb
+    }
 
     
 }

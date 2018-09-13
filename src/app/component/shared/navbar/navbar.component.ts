@@ -12,22 +12,26 @@ export class NavbarComponent implements OnInit {
   titrelogin:string="Se connecter/S'inscrire";
   constructor( private cnxserviceslogin:LoginServiceFireBase,private routes:Router,private authcnx:AngularFireAuth) { 
 
+    
         this.cnxserviceslogin.changeTitle().subscribe((data)=>{
 
           this.titrelogin=data
         })
-
+      
   }
 
   ngOnInit() {
     let user = this.authcnx.auth.currentUser
 
-
-    if(user){
+  
+    if(user && localStorage.getItem('web')){
      
         this.titrelogin=user.email
         console.log("link nav"+this.titrelogin)
      
+    }
+    else{
+      this.titrelogin="Se connecter/S'inscrire"
     }
   }
   //  

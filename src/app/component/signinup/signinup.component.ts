@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from "angularfire2/auth";
 import { Router,ActivatedRoute } from '@angular/router';
+import { LoginServiceFireBase } from '../login/login.service';
 
 @Component({
   selector: 'app-signinup',
@@ -8,20 +9,29 @@ import { Router,ActivatedRoute } from '@angular/router';
   styleUrls: ['./signinup.component.css']
 })
 export class SigninupComponent implements OnInit {
-
-  constructor(private cnx:AngularFireAuth, private router:Router,private aroute:ActivatedRoute) { }
+  providersGF:string=""
+  constructor(private providersfg :LoginServiceFireBase,private cnx:AngularFireAuth, private router:Router,private aroute:ActivatedRoute) { 
+    this.providersGF=localStorage.getItem('provider')!=null? localStorage.getItem('provider'):''
+  }
 
   ngOnInit() {
+   
     let user = this.cnx.auth.currentUser;
-
-
-            if(user){
-              if (user.emailVerified==true) {
+    
+    if(user && localStorage.length>0){
+        if(this.providersGF!=''){
+          this.router.navigate(['/succes'])
+        }
+        else{
+           if (user.emailVerified==true) {
                 this.router.navigate(['/succes'])  
               } 
-            }
-
-
+            
+          }
+        }
+        else{
+          this.providersfg.changeTitle().emit("Se connecter/S'inscrire")
+        }
   }
 
 

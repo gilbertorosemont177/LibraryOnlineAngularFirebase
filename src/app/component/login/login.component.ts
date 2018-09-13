@@ -13,10 +13,17 @@ export class LoginComponent implements OnInit {
   hide:boolean=true
   msg:string;
   url:string;
+  providersGF:string
   msgvalidatorsf:string;
-  constructor(private firestoreBase:LoginServiceFireBase,private aroute:ActivatedRoute, private router:Router,private cnxcurrentuser:AngularFireAuth,private loginservice:LoginServiceFireBase) {}
+  constructor( private router:Router,private cnxcurrentuser:AngularFireAuth,private loginservice:LoginServiceFireBase) {
+
+   
+   
+  }
 
   ngOnInit() {
+    
+
             
   }
 
@@ -37,6 +44,8 @@ export class LoginComponent implements OnInit {
           setTimeout(()=>{
    
                 this.router.navigate(['/succes']) 
+   
+       localStorage.setItem('web','books')
                 this.loginservice.changeTitle().emit(user.user.email)
                 
              }, 3000)
@@ -85,16 +94,16 @@ export class LoginComponent implements OnInit {
 
   //login with facebook
   loginWithFbook(){
-    const providerFacebook=new firebase.auth.FacebookAuthProvider;
+    const providerFacebook=new firebase.auth.FacebookAuthProvider();
     
     providerFacebook.setCustomParameters({
       'display': 'popup'
     });
     
-   
-    this.cnxcurrentuser.auth.signInWithPopup(providerFacebook).then((result)=>{
+    firebase.auth().signInWithPopup(providerFacebook).then((result)=>{
      if(result.user){
-     
+       localStorage.setItem('provider','facebook')
+       localStorage.setItem('web','books')
         this.router.navigate(['/succes']) 
       
     }
@@ -114,18 +123,18 @@ export class LoginComponent implements OnInit {
   loginWithGoogle(){
 
     const providerGoogle=new firebase.auth.GoogleAuthProvider();
+    localStorage.setItem('provider','gmail')
     providerGoogle.setCustomParameters({
       prompt: 'select_account'
    });
     firebase.auth().signInWithPopup(providerGoogle).then((result)=> {
     if(result.user){ 
       
-      
+      localStorage.setItem('provider','facebook')
+       localStorage.setItem('web','books')
            this.router.navigate(['/succes']) 
         
-        console.log("depuis login google-1"+result)
-    console.log("depuis login google-2"+result.user)
-    
+      
       
     }
   }).catch((error) =>{

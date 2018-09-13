@@ -11,6 +11,7 @@ export class HomeuserComponent implements OnInit {
 
   listebookOfFireDB;
   username:string;
+  imgUser:string;
   constructor( private cnxrouter:Router,private firestoreBase:LoginServiceFireBase, private authentification:AngularFireAuth
   )
   { 
@@ -22,6 +23,10 @@ export class HomeuserComponent implements OnInit {
       //  this.listebookOfFireDB   = this.firestoreBase.getAllBooks()
         this.firestoreBase.changeTitle().emit(user.email)
         this.username=user.displayName
+        this.imgUser=user.photoURL
+      }
+      else{
+        this.firestoreBase.changeTitle().emit("Se connecter/S'inscrire")
       }
     })
   }

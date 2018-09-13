@@ -26,11 +26,13 @@
         <div class="button-row">
            
            
-               <button mat-fab (click)="infoBookbyId(book.id)" >
-                <mat-icon  class="iconss"  aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-              </button>
-             
-           
+              <button mat-raised-button (click)="infoBookbyId(book.id)" color="primary">info book</button>
+              <span *ngIf="cnxuser===true">
+                <button mat-raised-button color="accent">Ajouter</button>
+
+              </span>
+  
+          
      </div>
     </mat-card-actions>
   </mat-card>

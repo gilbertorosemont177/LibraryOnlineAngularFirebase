@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, Validators,FormGroup, FormBuilder, } from '@angular/forms';
 import { AngularFireAuth, AngularFireAuthModule} from "angularfire2/auth";
 
 
@@ -10,18 +10,24 @@ import { Router } from '@angular/router';
   templateUrl: './inscription.component.html',
   styleUrls: ['./inscription.component.css']
 })
-export class InscriptionComponent  {
+export class InscriptionComponent implements OnInit {
 
   msg:string;
-  //signup:boolean=false;
-
-  useremail:string;
-  constructor(private cnx:AngularFireAuth,private router:Router,private authfba:AngularFireAuthModule){
+  formValidation:true
+  msgValidationFields:string
+  
+  constructor(private formBuilder: FormBuilder,private cnx:AngularFireAuth,private router:Router,private authfba:AngularFireAuthModule){
                   
+  }
+  ngOnInit(){  }
+
+  formValidations():boolean{
+    return (this.email.invalid || this.password.invalid || this.username.invalid || this.cpassword.invalid)? true :false
   }
 
   createUser( email:string, password:string,username:string){
-    this.cnx.auth.createUserWithEmailAndPassword(email,password).then((user)=>{
+if(!this.formValidations()){
+  this.cnx.auth.createUserWithEmailAndPassword(email,password).then((user)=>{
 
       user.user.updateProfile({
             displayName:username,
@@ -41,13 +47,20 @@ export class InscriptionComponent  {
         console.log(error.message)
 
   })
+}
+else{
+  this.msgValidationFields="Des Champs invalides ou vides dans le formulaire"
 
+} 
   }
   
   email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z@._]+$')]);
+  password= new FormControl('',[Validators.required,Validators.minLength(6)])
   
-  username= new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z._]+$')])
+  cpassword= new FormControl('', [Validators.required])
+  username= new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z._]+$'),Validators.minLength(4)])
   hide = true;
+  matchP:boolean=false;
 
   getErrorMessageEmail() {
     return this.email.hasError('required') ? 'Vous devez saisir un email ' :
@@ -57,14 +70,28 @@ export class InscriptionComponent  {
   }
 
   getErrorMessageUsername(){
-    return this.username.hasError('required') ? 'Vous devez saisir un username minimun 4 lettres' :this.username.hasError('pattern')? "Il ya des caracteres pas valides dans votre username "
-:
-    // this.username.hasError('pattern')
-    // ? 'username nest pas correct':
+    return this.username.hasError('required') ? 'Vous devez saisir un username minimun 4 lettres' :
+    this.username.hasError('pattern')? "Il ya des caracteres pas valides dans votre username ":
+    this.username.hasError('minlength')? " vous devez saisir un username de minimun 4 lettres":
         '';
 
   }
+  
+  matchPasswords(e,confirmationpsw):void{
+    if(confirmationpsw!=this.password.value){
+       this.matchP=true
+       console.log("confirmation : "+confirmationpsw +" matchp :"+this.matchP)
+    }
+  
+}
+getpasswordError(){
+  return this.password.hasError('required')? "Vous devez saisir un password":this.password.hasError('minlength')?"le password doit contenir au moins 6 caracteres":""
+}
 
+getMatchpasswordError(){
+
+  return this.cpassword.hasError('required') ? 'Vous devez confirmer le password' :this.matchP==true? 'Les passwords sont differents' :'';
+}
 
 
 }

@@ -5,6 +5,9 @@
    <div *ngIf="msg"  class="alert alert-danger" role="alert">
                 {{msg}} 
           </div>
+    <div *ngIf="msgValidationFields"  class="alert alert-danger" role="alert">
+            {{msgValidationFields}} 
+      </div>
 <!-- HEADER-->
   <mat-card-header>
         <mat-toolbar  color="primary">
@@ -21,16 +24,10 @@
            <div class="col-sm-6">         
               <div class="example-container mb-3 pl-5">
             <mat-form-field>
-                <mat-hint align="end">{{username.value?.length || 4}} lettres minimum</mat-hint> 
-              <input matInput #usernames minlength="4" placeholder="Entrez votre username" [formControl]="username"  required>
+                <mat-hint  align="end">{{username.value?.length || 4}} lettres minimum</mat-hint> 
+              <input matInput  minlength="4" placeholder="Entrez un username pour s'enregistrer" [formControl]="username"  required>
              
               <mat-error *ngIf="username.invalid"> {{getErrorMessageUsername()}}</mat-error>
-              
-
-<!--               
-              <input matInput #input maxlength="10" placeholder="Enter some input">
-              <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint> -->
-
 
             </mat-form-field>
           </div>
@@ -38,20 +35,20 @@
 
             <div class="example-container mb-3 pl-5">
                 <mat-form-field>
-                  <input matInput #emails  placeholder="Entrez un email valide" [formControl]="email" required>
+                  <input matInput   placeholder="Entrez un email valide pour s'enregistrer" [formControl]="email" required>
                   <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
                   <mat-hint align="end">*vous allez recevoir un email de confirmation</mat-hint> 
                 </mat-form-field>
               </div>
 
 
-
-
                 <div class="example-container mb-3 pl-5">
                 <mat-form-field>
-                    <input matInput #passwords  placeholder="Entrez votre password" [type]="hide ? 'password' : 'text'">
+                    <input matInput [formControl]="password"  placeholder="Entrez votre password"  [type]="hide ? 'password' : 'text'">
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                  </mat-form-field>
+                    <mat-hint align="end">*password doit contenir au moins 6 caracteres</mat-hint> 
+                    <mat-error *ngIf="cpassword.invalid ">{{getpasswordError()}}</mat-error>
+                </mat-form-field>
                     </div>
           </div>
 
@@ -60,8 +57,10 @@
 <div class="col-sm-6 ">
     <div class="example-container mb-3 pr-5">
         <mat-form-field>
-            <input matInput placeholder="Confirmez votre password" [type]="hide ? 'password' : 'text'">
+        <!-- (keypress)="eventHandler($event)" -->
+            <input (keyup)="matchPasswords($event,cpassword.value)" [formControl]="cpassword" matInput placeholder="Confirmez votre password" [type]="hide ? 'password' : 'text'">
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <mat-error *ngIf="cpassword.invalid ">{{getMatchpasswordError()}}</mat-error>
           </mat-form-field>
             </div>
 
@@ -72,7 +71,7 @@
     <mat-card-actions class="mb-4">
         <div class="button-row pl-5  ">
           <div class="row">
-            <button (click)="createUser(emails.value,passwords.value,usernames.value)"  mat-flat-button color="primary">S'enregistrer</button>
+            <button (click)="createUser(email.value,password.value,username.value)" [disabled]="formValidation" mat-flat-button color="primary">S'enregistrer</button>
             
           </div>
        </div>

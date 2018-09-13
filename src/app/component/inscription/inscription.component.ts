@@ -61,7 +61,7 @@ else{
   cpassword= new FormControl('', [Validators.required])
   username= new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z._]+$'),Validators.minLength(4)])
   hide = true;
-  matchP:boolean=false;
+  matchP:boolean;
 
   getErrorMessageEmail() {
     return this.email.hasError('required') ? 'Vous devez saisir un email ' :
@@ -77,21 +77,27 @@ else{
         '';
 
   }
-  
+  msgMatchPcP:string
   matchPasswords(e,confirmationpsw):void{
     if(confirmationpsw!=this.password.value){
        this.matchP=true
+       this.msgMatchPcP="le mot de passe et la confirmation du mot passe ne correspondent pas"
        console.log("confirmation : "+confirmationpsw +" matchp :"+this.matchP)
+    }
+    else{
+      this.matchP=false
+      
     }
   
 }
 getpasswordError(){
+ 
   return this.password.hasError('required')? "Vous devez saisir un password":this.password.hasError('minlength')?"le password doit contenir au moins 6 caracteres":""
 }
 
 getMatchpasswordError(){
 
-  return this.cpassword.hasError('required') ? 'Vous devez confirmer le password' :this.matchP==true? 'Les passwords sont differents' :'';
+  return this.cpassword.hasError('required')? "Vous devez confirmer le password":"";
 }
 
 

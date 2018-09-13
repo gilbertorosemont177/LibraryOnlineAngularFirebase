@@ -122,3 +122,12 @@ body { padding: 2em; }
 .loginBtn--google:focus {
   background: #E74B37;
 }
+
+.cf {
+    display: block!important;
+    font-size: 12px!important;
+    color: red!important;
+  }
+  .gt {
+      color:red !important;
+    }

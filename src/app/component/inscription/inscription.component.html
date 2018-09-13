@@ -27,7 +27,7 @@
                 <mat-hint  align="end">{{username.value?.length || 4}} lettres minimum</mat-hint> 
               <input matInput  minlength="4" placeholder="Entrez un username pour s'enregistrer" [formControl]="username"  required>
              
-              <mat-error *ngIf="username.invalid"> {{getErrorMessageUsername()}}</mat-error>
+              <mat-error *ngIf="username.invalid "> {{getErrorMessageUsername()}}</mat-error>
 
             </mat-form-field>
           </div>
@@ -44,10 +44,10 @@
 
                 <div class="example-container mb-3 pl-5">
                 <mat-form-field>
-                    <input matInput [formControl]="password"  placeholder="Entrez votre password"  [type]="hide ? 'password' : 'text'">
+                    <input matInput (keyup)="matchPasswords($event,password.value)" [formControl]="password"  placeholder="Entrez votre password"  [type]="hide ? 'password' : 'text'">
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
                     <mat-hint align="end">*password doit contenir au moins 6 caracteres</mat-hint> 
-                    <mat-error *ngIf="cpassword.invalid ">{{getpasswordError()}}</mat-error>
+                    <mat-error *ngIf="password.invalid ">{{getpasswordError()}}</mat-error>
                 </mat-form-field>
                     </div>
           </div>
@@ -58,12 +58,18 @@
     <div class="example-container mb-3 pr-5">
         <mat-form-field>
         <!-- (keypress)="eventHandler($event)" -->
-            <input (keyup)="matchPasswords($event,cpassword.value)" [formControl]="cpassword" matInput placeholder="Confirmez votre password" [type]="hide ? 'password' : 'text'">
+            <input matInput (keyup)="matchPasswords($event,cpassword.value)" [formControl]="cpassword"  placeholder="Confirmez votre password" [type]="hide ? 'password' : 'text'">
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-            <mat-error *ngIf="cpassword.invalid ">{{getMatchpasswordError()}}</mat-error>
+             <mat-error *ngIf="cpassword.invalid">{{getMatchpasswordError()}}</mat-error>
+           
+           
           </mat-form-field>
-            </div>
+          <span *ngIf="matchP">
 
+            <mat-error class="mat-error ng-star-inserted" style="font-size:10px" role="alert"> {{msgMatchPcP}}</mat-error>
+          </span>
+            </div>
+            
             </div>
 
             </div>

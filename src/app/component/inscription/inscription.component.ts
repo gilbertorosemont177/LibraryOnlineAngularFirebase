@@ -50,7 +50,8 @@ if(!this.formValidations()){
 }
 else{
   this.msgValidationFields="Des Champs invalides ou vides dans le formulaire"
-
+  setTimeout(()=>{ this.msgValidationFields="";
+  console.log("time out")},3000)
 } 
   }
   

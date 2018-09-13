@@ -13,46 +13,70 @@ export class LoginComponent implements OnInit {
   hide:boolean=true
   msg:string;
   url:string;
+  msgvalidatorsf:string;
   constructor(private firestoreBase:LoginServiceFireBase,private aroute:ActivatedRoute, private router:Router,private cnxcurrentuser:AngularFireAuth,private loginservice:LoginServiceFireBase) {}
 
   ngOnInit() {
             
   }
+
+  ValidationFieldsLogin():boolean{
+
+    return(this.email.invalid || this.email.invalid)?true:false
+  }
   // login firebase
   loginfb(username:string,password:string){
-      this.loginservice.login(username,password).then(
+  if(!this.ValidationFieldsLogin()){
+    this.loginservice.login(username,password).then(
         
-   (user)=>{
-      
-      if(user.user.emailVerified==true){
+      (user)=>{
+         
+         if(user.user.emailVerified==true){
+   
+         this.router.navigate(['/waiting'])
+          setTimeout(()=>{
+   
+                this.router.navigate(['/succes']) 
+                this.loginservice.changeTitle().emit(user.user.email)
+                
+             }, 3000)
+       }
+       else{
+         this.router.navigate(['/login'])
+       }
+     }
+         
+       ).catch((errors)=>{
+   
+         this.msg=errors.message
+   
+      console.log(errors.code);
+       } )
+   
 
-      this.router.navigate(['/waiting'])
-       setTimeout(()=>{
-
-             this.router.navigate(['/succes']) 
-             this.loginservice.changeTitle().emit(user.user.email)
-             
-          }, 3000)
-    }
-    else{
-      this.router.navigate(['/login'])
-    }
   }
+  else{
+    this.msgvalidatorsf="Erreur les champs son vides ou invalides";
+    setTimeout(()=>{ this.msgvalidatorsf=""},3000)
+   
       
-    ).catch((errors)=>{
 
-      this.msg=errors.message
+  }
 
-   console.log(errors.code);
-    } )
-
+     
   }
 
   email = new FormControl('', [Validators.required, Validators.email]);
+  password=new FormControl('', [Validators.required, Validators.minLength(6)])
+  getErrorPassword(){
+    
 
+    return this.password.hasError('required')? 'vous devez saisir votre password':this.password.hasError('minlength')?'le password doit contenir au moins 6 caracteres':''
+  }
   getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid email' :
+    
+    return this.email.hasError('required') ? 'vous devez saisir votre email' :
+        this.email.hasError('email') ? 'email pas valide' :
             '';
   }
   hidePassword(){

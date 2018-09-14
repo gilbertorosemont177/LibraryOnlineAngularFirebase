@@ -12,6 +12,8 @@ import { WaitingComponent } from './component/waiting/waiting.component';
 import { ConfirmationemailComponent  } from './component/confirmationemail/confirmationemail.component';
 import { SigninupComponent } from "./component/signinup/signinup.component";
 import { NavbarComponent } from "./component/shared/navbar/navbar.component";
+import { NewyorktComponent } from './component/newyorkt/newyorkt.component';
+
  // import { PageNotFoundComponent } from './';
 
 const APP_ROUTES: Routes = [
@@ -22,6 +24,7 @@ const APP_ROUTES: Routes = [
     {path:'bookdetail/:id',component:BookdetailComponent},
     {path: 'search/:bookname', component:SearchbookComponent},
     {path:'succes', component:HomeuserComponent},
+    {path:'newyorks',component:NewyorktComponent},
     {path:'signinup',component:SigninupComponent,
 
     children :[

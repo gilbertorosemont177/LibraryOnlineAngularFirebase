@@ -18,6 +18,8 @@ import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { HttpClientModule} from "@angular/common/http";
+
 //FIREBASE MODULES
 import {AngularFireModule  } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -29,6 +31,7 @@ import {FIREBASECONFIG  } from "./../FIREBASECONFIG/firebase.config";
 //services
 import { BooksService } from "./component/books/books.service";
 import {LoginServiceFireBase  } from "./component/login/login.service";
+import { NewYorkService } from "./component/newyorkt/newyork.service";
 import { WaitingComponent } from './component/waiting/waiting.component';
 import { ConfirmationemailComponent } from './component/confirmationemail/confirmationemail.component';
 import { SigninupComponent } from './component/signinup/signinup.component';
@@ -62,6 +65,7 @@ import { NewyorktComponent } from './component/newyorkt/newyorkt.component';
     MaterialModuleApp,
     RoutesAppBooksModule,
     ReactiveFormsModule,
+    HttpClientModule,
   
     AngularFireAuthModule,
    
@@ -69,7 +73,7 @@ import { NewyorktComponent } from './component/newyorkt/newyorkt.component';
     AngularFirestoreModule,
  
   ],
-  providers: [BooksService,LoginServiceFireBase],
+  providers: [BooksService,LoginServiceFireBase,NewYorkService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

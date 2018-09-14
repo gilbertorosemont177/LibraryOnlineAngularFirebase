@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NewYorkService } from './newyork.service';
 
 @Component({
   selector: 'app-newyorkt',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewyorktComponent implements OnInit {
 
-  constructor() { }
+  constructor(private api:NewYorkService) { }
 
   ngOnInit() {
+
+
+
+  }
+
+  apis(){
+
+    this.api.getStoriesNYApi()
   }
 
 }

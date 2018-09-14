@@ -20,7 +20,6 @@ export class HomeuserComponent implements OnInit {
         console.log("EMAIL -GT:"+user.email)
         console.log("EMAIL VERIFIED -GT"+user.emailVerified)
         this.username=user.displayName
-      //  this.listebookOfFireDB   = this.firestoreBase.getAllBooks()
         this.firestoreBase.changeTitle().emit(user.email)
         this.username=user.displayName
         this.imgUser=user.photoURL

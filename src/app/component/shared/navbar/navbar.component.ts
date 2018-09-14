@@ -21,18 +21,31 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    let user = this.authcnx.auth.currentUser
 
-  
-    if(user && localStorage.getItem('web')){
-     
+    this.authcnx.authState.subscribe((user)=>{
+
+      if(user){
         this.titrelogin=user.email
-        console.log("link nav"+this.titrelogin)
+      }
+      else{
+              this.titrelogin="Se connecter/S'inscrire"
+        }
+    })
+
+
+
+//     let user = this.authcnx.auth.currentUser
+// console.log(user)
+  
+//     if(user|| localStorage.length>0){
      
-    }
-    else{
-      this.titrelogin="Se connecter/S'inscrire"
-    }
+//         //this.titrelogin=user.email
+//         console.log("link nav"+this.titrelogin)
+     
+//     }
+//     else{
+//       this.titrelogin="Se connecter/S'inscrire"
+//     }
   }
   //  
   infoBook(booksearched:string){

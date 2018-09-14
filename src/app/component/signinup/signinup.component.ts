@@ -15,7 +15,7 @@ export class SigninupComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+   //verifier sil ya connecte 
     let user = this.cnx.auth.currentUser;
     
     if(user && localStorage.length>0){

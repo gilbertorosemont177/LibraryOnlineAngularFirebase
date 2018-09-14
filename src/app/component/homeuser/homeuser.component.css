@@ -42,9 +42,7 @@ body {
   margin-right: 8px;
 }
 
-img {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
-    width: 150px;
-}
+.imguserhome {
+    border-radius: 50%;
+    width: 80px
+  }

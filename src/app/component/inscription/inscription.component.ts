@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators,FormGroup, FormBuilder, } from '@angular/forms';
 import { AngularFireAuth, AngularFireAuthModule} from "angularfire2/auth";
-
-
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class InscriptionComponent implements OnInit {
 
-  msg:string;
+  msg:string
   formValidation:true
   msgValidationFields:string
   
@@ -77,18 +75,24 @@ else{
         '';
 
   }
-  msgMatchPcP:string
+  msgMatchPcP:string="le mot de passe et la confirmation du mot passe ne correspondent pas"
   matchPasswords(e,confirmationpsw):void{
-    if(confirmationpsw!=this.password.value){
-       this.matchP=true
-       this.msgMatchPcP="le mot de passe et la confirmation du mot passe ne correspondent pas"
-       console.log("confirmation : "+confirmationpsw +" matchp :"+this.matchP)
-    }
-    else{
-      this.matchP=false
+    this.matchP=false
+      switch (e.currentTarget.id) {
+        case 'password' :
+        if(confirmationpsw!=this.cpassword.value)
+            this.matchP=true
+        break;
+        case 'cpassword' :
+          if(confirmationpsw!=this.password.value)
+             this.matchP=true
+        break;
       
-    }
-  
+        default:
+        
+          break;
+      }
+
 }
 getpasswordError(){
  

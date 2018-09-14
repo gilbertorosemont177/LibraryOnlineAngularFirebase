@@ -20,11 +20,8 @@ export class LoginServiceFireBase {
 
     }
     public signOut(){
-        let provider=localStorage.getItem('provider')
-        if(provider!=null){
-            localStorage.removeItem('provider')
-        }
-        console.log("value de la key provider : "+provider)
+       localStorage.clear()
+    
         this.cnx.auth.signOut().then(()=>{
 
             console.log("SignOut")
@@ -47,6 +44,4 @@ export class LoginServiceFireBase {
 
         return this.loginwithGmailOrFaceb
     }
-
-    
 }

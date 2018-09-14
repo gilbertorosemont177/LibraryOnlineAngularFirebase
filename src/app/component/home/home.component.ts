@@ -23,15 +23,17 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.cnxuser)
-    if(this.usercnx.auth.currentUser && localStorage.length>0){
-      this.cnxuser=true
-    }
-    else{
-      this.route.navigate(['/home'])
-this.servicelogin.changeTitle().emit("Se connecter/S'inscrire")
-      
-    }
+
+    this.usercnx.authState.subscribe((user)=>{
+
+      if(user && localStorage.length>0){
+        this.cnxuser=true
+      }
+      else{
+        this.route.navigate(['/home'])
+        this.servicelogin.changeTitle().emit("Se connecter/S'inscrire")
+        }
+    })
     
   }
 

@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit {
     firebase.auth().signInWithPopup(providerFacebook).then((result)=>{
      if(result.user){
        localStorage.setItem('provider','facebook')
-       localStorage.setItem('web','books')
+       //localStorage.setItem('web','books')
         this.router.navigate(['/succes']) 
       
     }
@@ -130,8 +130,8 @@ export class LoginComponent implements OnInit {
     firebase.auth().signInWithPopup(providerGoogle).then((result)=> {
     if(result.user){ 
       
-      localStorage.setItem('provider','facebook')
-       localStorage.setItem('web','books')
+      //localStorage.setItem('provider','facebook')
+      // localStorage.setItem('web','books')
            this.router.navigate(['/succes']) 
         
       

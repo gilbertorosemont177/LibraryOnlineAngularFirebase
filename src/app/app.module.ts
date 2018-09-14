@@ -32,6 +32,7 @@ import {LoginServiceFireBase  } from "./component/login/login.service";
 import { WaitingComponent } from './component/waiting/waiting.component';
 import { ConfirmationemailComponent } from './component/confirmationemail/confirmationemail.component';
 import { SigninupComponent } from './component/signinup/signinup.component';
+import { NewyorktComponent } from './component/newyorkt/newyorkt.component';
 
 
 
@@ -50,7 +51,8 @@ import { SigninupComponent } from './component/signinup/signinup.component';
     HomeuserComponent,
     WaitingComponent,
     ConfirmationemailComponent,
-    SigninupComponent
+    SigninupComponent,
+    NewyorktComponent
   
   ],
   imports: [

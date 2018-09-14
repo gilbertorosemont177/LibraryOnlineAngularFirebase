@@ -21,20 +21,21 @@
 
 <div class="container-fluid h-100">
   <div class="row h-100">
-      <aside class="col-12 col-md-2 p-0 " style="background-color:aqua">
-          <nav style="background-color:aqua" class="navbar navbar-expand   flex-md-column flex-row align-items-start py-2">
+      <aside class="col-12 col-md-2 p-0 aside-nav-book " >
+          <nav class="navbar navbar-expand   flex-md-column flex-row align-items-start py-2 aside-nav-book">
               <div class="collapse navbar-collapse">
                   <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
                       <li class="nav-item">
-                          <a class="nav-link pl-0 text-nowrap" href="#"><i class="fa fa-bullseye fa-fw"></i> <span class="font-weight-bold">Brand</span></a>
+                          <a class="nav-link pl-0 " href="#"><i class="fa fa-book fa-fw"></i> <span class="font-weight-bold">Le Monde nouvelles</span></a>
                       </li>
                     
                       <li class="nav-item">
-                          <a class="nav-link pl-0" href="#"><i class="fa fa-book fa-fw"></i> <span class="d-none d-md-inline">Link</span></a>
+                          <a class="nav-link pl-0" (click)="test()" routerLink="/signinup" ><i class="fa fa-book fa-fw"></i> <span class="d-none d-md-inline">New York Times news</span></a>
                       </li>
                     
                       <li class="nav-item">
-                        <button mat-raised-button color="primary" (click)="logout()">Se deconnecter</button>
+                       <a class="nav-link pl-0" (click)="logout()" routerLink="/home" ><i class="fa fa-book fa-fw"></i> <span class="d-none d-md-inline">Se deconnecter</span></a>
+                        <!-- <button mat-raised-button color="primary" (click)="logout()">Se deconnecter</button> -->
                       </li>
                   </ul>
               </div>

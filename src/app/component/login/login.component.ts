@@ -67,9 +67,6 @@ export class LoginComponent implements OnInit {
   else{
     this.msgvalidatorsf="Erreur les champs son vides ou invalides";
     setTimeout(()=>{ this.msgvalidatorsf=""},3000)
-   
-      
-
   }
 
      
@@ -107,9 +104,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/succes']) 
       
     }
-      else{
+    else{
         this.router.navigate(['/login']) 
-      }
+    }
   console.log(result)
   console.log(result.user)
 

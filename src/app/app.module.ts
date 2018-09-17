@@ -30,12 +30,16 @@ import {FIREBASECONFIG  } from "./../FIREBASECONFIG/firebase.config";
 
 //services
 import { BooksService } from "./component/books/books.service";
+import { HomeUserService } from './component/homeuser/homeuser.service';
+
 import {LoginServiceFireBase  } from "./component/login/login.service";
 import { NewYorkService } from "./component/newyorkt/newyork.service";
 import { WaitingComponent } from './component/waiting/waiting.component';
 import { ConfirmationemailComponent } from './component/confirmationemail/confirmationemail.component';
 import { SigninupComponent } from './component/signinup/signinup.component';
 import { NewyorktComponent } from './component/newyorkt/newyorkt.component';
+import { DisplayoptionsComponent } from './component/displayoptions/displayoptions.component';
+import { MybooksComponent } from './component/mybooks/mybooks.component';
 
 
 
@@ -55,7 +59,9 @@ import { NewyorktComponent } from './component/newyorkt/newyorkt.component';
     WaitingComponent,
     ConfirmationemailComponent,
     SigninupComponent,
-    NewyorktComponent
+    NewyorktComponent,
+    DisplayoptionsComponent,
+    MybooksComponent
   
   ],
   imports: [
@@ -73,7 +79,7 @@ import { NewyorktComponent } from './component/newyorkt/newyorkt.component';
     AngularFirestoreModule,
  
   ],
-  providers: [BooksService,LoginServiceFireBase,NewYorkService],
+  providers: [BooksService,LoginServiceFireBase,NewYorkService,HomeUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,7 +13,8 @@ import { ConfirmationemailComponent  } from './component/confirmationemail/confi
 import { SigninupComponent } from "./component/signinup/signinup.component";
 import { NavbarComponent } from "./component/shared/navbar/navbar.component";
 import { NewyorktComponent } from './component/newyorkt/newyorkt.component';
-
+import { DisplayoptionsComponent } from './component/displayoptions/displayoptions.component';
+import {MybooksComponent} from './component/mybooks/mybooks.component'
  // import { PageNotFoundComponent } from './';
 
 const APP_ROUTES: Routes = [
@@ -23,10 +24,16 @@ const APP_ROUTES: Routes = [
     {path:'nav',component:NavbarComponent},
     {path:'bookdetail/:id',component:BookdetailComponent},
     {path: 'search/:bookname', component:SearchbookComponent},
-    {path:'succes', component:HomeuserComponent},
-    {path:'newyorks',component:NewyorktComponent},
+    {path:'succes', component:HomeuserComponent,
+        children:[
+                    {path:'', pathMatch:'full', redirectTo:'succes'},
+                    {path:'listemybooks', component:MybooksComponent},
+                    {path:'newyorkstories',component:NewyorktComponent},
+        ]
+    },
+   
     {path:'signinup',component:SigninupComponent,
-
+    
     children :[
 
 
@@ -38,9 +45,6 @@ const APP_ROUTES: Routes = [
     {path:'waiting',component:WaitingComponent},
     {path:'account',component:ConfirmationemailComponent}
 
-    
-
-    
     // { path: '**', component: PageNotFoundComponent },
 
     //{ path: 'path/:routeParam', component: MyComponent },

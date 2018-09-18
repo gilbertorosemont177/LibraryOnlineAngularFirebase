@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { map } from 'rxjs/operators';
+
 const APIKEY="d3017e2f198c48c89a6b7ea6d93ced4f"
 @Injectable()
 export class NewYorkService {
@@ -12,7 +14,8 @@ export class NewYorkService {
 
    public getStoriesNYApi(){
         console.log("stories api")
-         this.HttpcnxNY.get(this.LINKNYSTORIES,
+        let items:any[];
+        return this.HttpcnxNY.get(this.LINKNYSTORIES,
             {
              
             headers:({
@@ -24,10 +27,9 @@ export class NewYorkService {
 
          })
          }
-        ).subscribe((result)=>{
-
-            console.log(result)
-        })
+        )
+         
+        
     }
 
 }

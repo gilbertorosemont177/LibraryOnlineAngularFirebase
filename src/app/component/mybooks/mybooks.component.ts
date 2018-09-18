@@ -11,13 +11,14 @@ export class MybooksComponent implements OnInit {
 
   valuelast;
   constructor(private router:Router,private serviceHome:HomeUserService) { 
-    
+   
+    this.serviceHome.saveChildrenUrl(this.router.url.toString())
+    // console.log("thi mybooks component"+this.router.url.toString())
   }
 
   ngOnInit() {
     
-    this.serviceHome.saveChildrenUrl(this.router.url.toString())
-    console.log("thi mybooks component"+this.router.url.toString())
+    
    
    
   }

@@ -3,11 +3,12 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { Router } from '@angular/router';
 import { AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument  } from "angularfire2/firestore";
 import { Observable } from 'rxjs';
+import { HomeUserService } from "../homeuser/homeuser.service";
 @Injectable()
 export class LoginServiceFireBase {
    private logintitle= new EventEmitter<string>()
    public loginwithGmailOrFaceb= new EventEmitter<string>()
-    public constructor( private fireDatabase:AngularFirestore, private cnx:AngularFireAuth, private router:Router){
+    public constructor(private cnxService:HomeUserService, private fireDatabase:AngularFirestore, private cnx:AngularFireAuth, private router:Router){
     }
     
     public login( username:string,password:string):Promise<firebase.auth.UserCredential>{
@@ -21,9 +22,10 @@ export class LoginServiceFireBase {
     }
     public signOut(){
        localStorage.clear()
-    
-        this.cnx.auth.signOut().then(()=>{
 
+    this.cnxService.clearHistory()
+        this.cnx.auth.signOut().then(()=>{
+            
             console.log("SignOut")
         }).catch(()=>{
 

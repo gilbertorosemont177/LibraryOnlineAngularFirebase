@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from "angularfire2/auth";
 import { LoginServiceFireBase } from "./../login/login.service";
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { HomeUserService } from '../homeuser/homeuser.service';
-
-
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-homeuser',
@@ -18,7 +15,7 @@ export class HomeuserComponent implements OnInit {
   indexlast:number;
   username:string;
   imgUser:string;
-  constructor( private service: HomeUserService, private cnxrouter:Router,private firestoreBase:LoginServiceFireBase, private authentification:AngularFireAuth
+  constructor(private aroute:ActivatedRoute, private service: HomeUserService, private cnxrouter:Router,private firestoreBase:LoginServiceFireBase, private authentification:AngularFireAuth
 
   )
   { 
@@ -31,7 +28,7 @@ export class HomeuserComponent implements OnInit {
         this.username=user.displayName
         this.imgUser=user.photoURL
         
-        
+      //  this.cnxrouter.navigate(["./listemybooks"])
         
       }
       else{
@@ -42,12 +39,19 @@ export class HomeuserComponent implements OnInit {
   private routevisited:string
   ngOnInit() {
     this.indexlast= this.service.getlistUrl().length
-  if(this.indexlast>0){
+   if(this.indexlast>0){
     
     this.routevisited=this.service.getlistUrl()[this.indexlast-1]
     this.cnxrouter.navigate(["./"+this.routevisited])
     console.log("HOME USER COMPONENT TEST URL "+this.routevisited.toString())
   }
+  else{
+    this.cnxrouter.navigate(["./listemybooks"],{relativeTo:this.aroute})
+  }
+ 
+    
+
+  
 
 }
     logout():void{

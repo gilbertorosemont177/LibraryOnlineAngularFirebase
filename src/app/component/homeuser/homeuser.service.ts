@@ -13,4 +13,7 @@ export class HomeUserService {
 
         this.listUrl.push(url)
     }
+    public clearHistory(){
+        this.listUrl=[]
+    }
 }

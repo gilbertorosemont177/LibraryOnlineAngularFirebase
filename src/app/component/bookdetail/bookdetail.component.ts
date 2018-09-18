@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute  } from "@angular/router";
 import {BooksService  } from "./../books/books.service";
 import { Books } from "./../books/books.interface";
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-bookdetail',
   templateUrl: './bookdetail.component.html',
@@ -10,7 +12,7 @@ import { Books } from "./../books/books.interface";
 export class BookdetailComponent implements OnInit {
 
   booksinfo:Books;
-  constructor( private routerp:ActivatedRoute,private service:BooksService) { 
+  constructor(private urlBack:Location, private routerp:ActivatedRoute,private service:BooksService) { 
 
     
   }
@@ -19,4 +21,9 @@ export class BookdetailComponent implements OnInit {
     this.routerp.params.subscribe(p=>{this.booksinfo= this.service.getBook(+p['id'])})
   }
 
+
+
+  goBack(){
+    this.urlBack.back()
+  }
 }

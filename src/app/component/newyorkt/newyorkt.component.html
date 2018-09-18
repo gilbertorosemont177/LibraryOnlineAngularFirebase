@@ -1,6 +1,27 @@
-<p>
-  newyorkt works!
-</p>
 
+<div class="container mt-4">
 
-<button type="button" (click)="apis()" > test api </button>
+<h3>New york times stories</h3>
+
+<div>
+<div *ngFor=" let item of storiesliste ||async " > 
+
+  <h3>{{item.section}}</h3>
+
+  <div class="comment-content col-md-11 col-sm-10 col-12 mb-3 ">
+    <h6 class="small comment-meta"><a href="#">{{item.byline}}</a> {{item.created_date}}</h6>
+    <div class="comment-body">
+        <p>{{item.abstract}}
+
+            
+            <br>
+            <a href="{{item.url}}" class="text-right small"><i class="ion-reply"></i> link to the new  </a>
+        </p>
+        <img style="width: 250px; height: 200px" src="{{item.multimedia[3].url}}" alt=""/>  
+    </div>
+</div>
+
+</div>
+</div>
+
+</div>

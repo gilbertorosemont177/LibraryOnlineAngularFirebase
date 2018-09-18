@@ -12,7 +12,7 @@ export class NewYorkService {
     }
     
 
-   public getStoriesNYApi(){
+   public    getStoriesNYApi(){
         console.log("stories api")
         let items:any[];
         return this.HttpcnxNY.get(this.LINKNYSTORIES,
@@ -21,13 +21,14 @@ export class NewYorkService {
             headers:({
             'Accept': 'application/json',
             'Content-Type': 'application/json',
+            
             // 'Access-Control-Allow-Methods':" GET, POST, OPTIONS, PUT, DELETE",
             // 'Access-Control-Allow-Headers':" X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization",
             // 'Access-Control-Allow-Origin': "*"
 
          })
          }
-        )
+        ).pipe(map((result)=>  result))
          
         
     }

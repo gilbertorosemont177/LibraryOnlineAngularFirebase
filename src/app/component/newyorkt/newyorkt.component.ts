@@ -2,16 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NewYorkService } from './newyork.service';
 import { HomeUserService } from '../homeuser/homeuser.service';
 import { Router } from '@angular/router';
-import { filter, map, tap } from 'rxjs/operators'
-export interface apiss{
+import { nyTimesapiModel,resultsJsonObjet,multimediaObjet } from './newyortimesapi.model';
 
-  copyright:string
-last_updated:string
-num_results:number
-results:any[]
-section:string
-Status:string
-}
+
 
 @Component({
   selector: 'app-newyorkt',
@@ -27,16 +20,23 @@ export class NewyorktComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.apiNyTime()
     
   }
-variable;
-storiesliste:apiss
-  apis(){
 
-    this.api.getStoriesNYApi().subscribe((data)=>{
-      this.storiesliste=data as apiss
-      console.log(this.storiesliste.results[0])
+storiesliste
+
+ imgs:multimediaObjet[]
+  apiNyTime(){
+   let result:any
+    this.api.getStoriesNYApi().subscribe((reponse)=>{
+     
+      result=reponse as nyTimesapiModel
+      this.storiesliste= new Array(result.results.length)
+      for (let index = 0; index < result.results.length; index++) {
+            this.storiesliste[index]=result.results[index]
+      }
+       console.log(this.storiesliste)
     })
   }
 

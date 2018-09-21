@@ -3,8 +3,8 @@
 
 <h3>New york times stories</h3>
 
-<div>
-<div *ngFor=" let item of storiesliste ||async " > 
+
+<div *ngFor=" let item of stories ; let i=index" > 
 
   <h3>{{item.section}}</h3>
 
@@ -15,13 +15,15 @@
 
             
             <br>
-            <a href="{{item.url}}" class="text-right small"><i class="ion-reply"></i> link to the new  </a>
+            <a href="{{item.url}}" class="text-right small"><i class="ion-reply"></i> link to the new  </a> ç
         </p>
-        <img style="width: 250px; height: 200px" src="{{item.multimedia[3].url}}" alt=""/>  
+        <img style="width: 250px; height: 200px" src={{images[i]}} alt=""/>  
     </div>
 </div>
+</div>
 
-</div>
-</div>
+
+
+
 
 </div>

@@ -1,7 +1,7 @@
 
 <div class="container mt-4">
 
-<!-- <ng-container *ngIf="stories | async; else elseTemplate">
+<ng-container *ngIf="stories; else elseTemplate">
     
     <h3>New york times stories</h3>
     <div *ngFor=" let item of stories  ; let i=index" > 
@@ -17,7 +17,9 @@
                   <br>
                   <a href="{{item.url}}" class="text-right small"><i class="ion-reply"></i> link to the new  </a> 
               </p>
-             <img style="width: 250px; height: 200px" src={{images[i]}} alt=""/>  
+              <div *ngIf="item.multimedia[4]">
+              <img style="width: 250px; height: 200px" src={{item.multimedia[4].url}} alt=""/>   
+            </div>
           </div>
       </div>
       </div>
@@ -29,7 +31,7 @@
     <div class="loader"></div>
 
 
-</ng-template> --> 
+</ng-template> 
 
 <!-- <div *ngIf="stories | async; else loading"> -->
 
@@ -60,6 +62,6 @@
     
     
     </ng-template>   -->
-    <h1>hello new york component</h1>
+   
 
 </div>

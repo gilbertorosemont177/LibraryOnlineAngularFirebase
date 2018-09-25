@@ -4,8 +4,6 @@ import { HomeUserService } from '../homeuser/homeuser.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';;
 import { nyTimesapiModel,resultsJsonObjet } from './newyortimesapi.model';
-
-
 @Component({
   selector: 'app-newyorkt',
   templateUrl: './newyorkt.component.html',
@@ -24,20 +22,14 @@ export class NewyorktComponent implements OnInit {
   ngOnInit() {
     
    console.log("component neyork times")
-  
-    this.apiNy.getStoriesNYApi()
-    .subscribe((s:any)=>{
+    this.apiNy.getStoriesNYApi().subscribe((s:any)=>{
       this.stories=s.results
-  
       console.log(s.results)
      })
       
     
   }
-  
-
-
-    ApiNyCnx(){
+  ApiNyCnx(){
 
      
     }

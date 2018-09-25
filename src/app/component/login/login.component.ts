@@ -144,7 +144,7 @@ export class LoginComponent implements OnInit,OnDestroy {
       //localStorage.setItem('provider','facebook')
       // localStorage.setItem('web','books')
       
-         window.location.href="./succes"
+         window.location.href="./succes/listemybooks"
         // this.router.navigate(['./succes']);
         
       

@@ -21,8 +21,6 @@ export class HomeuserComponent implements OnInit {
   { 
     this.authentification.authState.subscribe((user)=>{
       if(user){
-        console.log("EMAIL -GT:"+user.email)
-        console.log("EMAIL VERIFIED -GT"+user.emailVerified)
         this.username=user.displayName
         this.firestoreBase.changeTitle().emit(user.email)
         this.username=user.displayName
@@ -31,26 +29,18 @@ export class HomeuserComponent implements OnInit {
       //  this.cnxrouter.navigate(["./listemybooks"])
         
       }
-      else{
-        this.firestoreBase.changeTitle().emit("Se connecter/S'inscrire")
-      }
+      // else{
+      //   this.firestoreBase.changeTitle().emit("Se connecter/S'inscrire")
+      // }
     })
   }
   private routevisited:string
   ngOnInit() {
-    this.indexlast= this.service.getlistUrl().length
-   if(this.indexlast>0){
-    
-    this.routevisited=this.service.getlistUrl()[this.indexlast-1]
-    this.cnxrouter.navigate(["./"+this.routevisited])
-    console.log("HOME USER COMPONENT TEST URL "+this.routevisited.toString())
-  }
-  else{
-    this.cnxrouter.navigate(["./listemybooks"],{relativeTo:this.aroute})
-  }
+//     this.indexlast= this.service.getlistUrl().length
+   
   
     
-
+ 
   
 
 }
@@ -63,5 +53,5 @@ export class HomeuserComponent implements OnInit {
       console.log(" test")
     }
     
-
+ 
 }

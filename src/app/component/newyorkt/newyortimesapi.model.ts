@@ -34,7 +34,7 @@ export interface nyTimesapiModel{
     copyright:string
     last_updated:string
     num_results:number
-    results:any[]
+    results:resultsJsonObjet[]
     section:string
     Status:string
 

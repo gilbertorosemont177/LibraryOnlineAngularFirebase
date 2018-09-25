@@ -5,24 +5,38 @@ import {Router  } from "@angular/router";
 import { LoginServiceFireBase } from "../login/login.service";
 import { AngularFireAuth } from "angularfire2/auth";
 import { elementStyleProp } from '@angular/core/src/render3/instructions';
+import { HomeService } from './homeservice.service';
+interface users{
+  email:string
+  uid:string
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+
 export class HomeComponent implements OnInit {
 
 
   effetcss:string
   cnxuser:boolean
   listebooks:Books[]
-  constructor(private servicelogin:LoginServiceFireBase ,private usercnx:AngularFireAuth ,private ListeB:BooksService, private route:Router) { 
+  constructor(private srvc:HomeService,private servicelogin:LoginServiceFireBase ,private usercnx:AngularFireAuth ,private ListeB:BooksService, private route:Router) { 
    
    this.getAllBooks() 
    
   }
 
   ngOnInit() {
+
+    let gt=this.srvc.getCollectionUsers().valueChanges() .forEach((p)=>{
+      console.log(p)
+    })
+   
+  
+   
 
     this.usercnx.authState.subscribe((user)=>{
 

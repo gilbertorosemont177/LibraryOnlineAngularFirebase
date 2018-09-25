@@ -5,7 +5,8 @@ export const FIREBASECONFIG ={
       databaseURL: "https://bookproject-a9c82.firebaseio.com",
       projectId: "bookproject-a9c82",
       storageBucket: "bookproject-a9c82.appspot.com",
-      messagingSenderId: "164725995405"
+      messagingSenderId: "164725995405",
+      
     }
   }
 

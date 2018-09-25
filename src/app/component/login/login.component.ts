@@ -1,23 +1,24 @@
-import { Component, OnInit,HostBinding } from '@angular/core';
+import { Component, OnInit,HostBinding,OnDestroy } from '@angular/core';
 import { LoginServiceFireBase  } from "./login.service";
 import {FormControl, Validators} from '@angular/forms';
 import { AngularFireAuth } from "angularfire2/auth";
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router,ActivatedRoute, NavigationEnd } from '@angular/router';
 import * as firebase from 'firebase';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit,OnDestroy {
   hide:boolean=true
   msg:string;
   url:string;
   providersGF:string
   msgvalidatorsf:string;
-  constructor( private router:Router,private cnxcurrentuser:AngularFireAuth,private loginservice:LoginServiceFireBase) {
+  navigationSubscription
+  constructor(private acr:ActivatedRoute, private router:Router,private cnxcurrentuser:AngularFireAuth,private loginservice:LoginServiceFireBase) {
 
-   
+  
    
   }
 
@@ -25,6 +26,14 @@ export class LoginComponent implements OnInit {
     
 
             
+  }
+  ngOnDestroy() {
+    // avoid memory leaks here by cleaning up after ourselves. If we  
+    // don't then we will continue to run our initialiseInvites()   
+    // method on every navigationEnd event.
+    if (this.navigationSubscription) {  
+       this.navigationSubscription.unsubscribe();
+    }
   }
 
   ValidationFieldsLogin():boolean{
@@ -101,7 +110,7 @@ export class LoginComponent implements OnInit {
      if(result.user){
        localStorage.setItem('provider','facebook')
        //localStorage.setItem('web','books')
-        this.router.navigate(['/succes']) 
+        this.router.navigate(['/succes/listemybooks']) 
       
     }
     else{
@@ -120,16 +129,23 @@ export class LoginComponent implements OnInit {
   loginWithGoogle(){
 
     const providerGoogle=new firebase.auth.GoogleAuthProvider();
+    
     localStorage.setItem('provider','gmail')
+    providerGoogle.addScope(""
+    )
     providerGoogle.setCustomParameters({
       prompt: 'select_account'
+      
    });
     firebase.auth().signInWithPopup(providerGoogle).then((result)=> {
+     
     if(result.user){ 
       
       //localStorage.setItem('provider','facebook')
       // localStorage.setItem('web','books')
-           this.router.navigate(['/succes']) 
+      
+         window.location.href="./succes"
+        // this.router.navigate(['./succes']);
         
       
       

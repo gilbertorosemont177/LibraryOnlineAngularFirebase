@@ -1,32 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-
-const APIKEY="d3017e2f198c48c89a6b7ea6d93ced4f"
+import { Observable } from 'rxjs';
+import { nyTimesapiModel,resultsJsonObjet } from './newyortimesapi.model';
+import { tap, delay, map } from 'rxjs/operators';
+const APIKEY="c82ea4e172d9471aad4ab75493b83095"
 @Injectable()
 export class NewYorkService {
     
     private LINKNYSTORIES=`https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${APIKEY}`
     constructor(private HttpcnxNY:HttpClient){}
     // method with promise and new york times  api
-   public getStoriesNYApi(): Promise<any[]>{
+   public getStoriesNYApi(){
         
-    let resultPromise:Promise<any[]>= new Promise((resolve,reject)=>{
-        this.HttpcnxNY.get(this.LINKNYSTORIES, {
-            headers :({
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-            })        
-        }).subscribe((result:any)=>{
-                let responsetab=result.results.map((value)=>{
-                    return value
-                })
-
-            resolve(responsetab)  
-        })
-
-    })
-     return resultPromise    
-        
-    }
+    return this.HttpcnxNY.get(this.LINKNYSTORIES)
+}
 
 }

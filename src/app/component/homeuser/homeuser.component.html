@@ -26,23 +26,23 @@
               <div class="collapse navbar-collapse">
                   <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
                       <li class="nav-item">
-                          <a class="nav-link pl-0 " routerLink="./listemybooks"><i class="fa fa-book fa-fw"></i> <span class="font-weight-bold">Mes livres</span></a>
+                          <a class="nav-link " routerLink="./listemybooks"> <span class="font-weight-bold">Mes livres</span></a>
                       </li>
                     
                       <li class="nav-item">
-                          <a class="nav-link pl-0" routerLink="./newyorkstories" ><i class="fa fa-book fa-fw"></i> <span class="font-weight-bold">New York Times stories</span></a>
+                          <a class="nav-link " routerLink="./newyorkstories" ><span class="font-weight-bold">New York Times stories</span></a>
                       </li>
                     
                       <li class="nav-item">
-                       <a class="nav-link pl-0" (click)="logout()" routerLink="/home" ><i class="fa fa-book fa-fw"></i> <span class="font-weight-bold">Se deconnecter</span></a>
+                       <a class="nav-linkx " (click)="logout()" routerLink="/home" > <span class="font-weight-bold">Se deconnecter</span></a>
                         <!-- <button mat-raised-button color="primary" (click)="logout()">Se deconnecter</button> -->
                       </li>
                   </ul>
               </div>
           </nav>
       </aside>
-      <main class="col  py-3">
-   <router-outlet></router-outlet>
+      <main class="col ">
+           <router-outlet></router-outlet>
       </main>
   </div>
 </div>

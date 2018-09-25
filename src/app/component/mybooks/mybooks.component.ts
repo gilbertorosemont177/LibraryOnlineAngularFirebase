@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeUserService } from "../homeuser/homeuser.service";
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mybooks',
@@ -10,15 +10,15 @@ import { Router } from '@angular/router';
 export class MybooksComponent implements OnInit {
 
   valuelast;
-  constructor(private router:Router,private serviceHome:HomeUserService) { 
+  constructor(private ar:ActivatedRoute,private router:Router,private serviceHome:HomeUserService) { 
    
     this.serviceHome.saveChildrenUrl(this.router.url.toString())
     // console.log("thi mybooks component"+this.router.url.toString())
   }
 
   ngOnInit() {
-    
-    
+    this.router.navigate(['./listemybooks'],{relativeTo:this.ar})
+    console.log("component my books")
    
    
   }

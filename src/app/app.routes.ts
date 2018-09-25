@@ -26,9 +26,10 @@ const APP_ROUTES: Routes = [
     {path: 'search/:bookname', component:SearchbookComponent},
     {path:'succes', component:HomeuserComponent,
         children:[
-                    {path:'', pathMatch:'full', redirectTo:'succes'},
-                    {path:'listemybooks', component:MybooksComponent},
-                    {path:'newyorkstories',component:NewyorktComponent},
+            {path:'listemybooks', component:MybooksComponent},
+            {path:'', pathMatch:'full', redirectTo:'succes'},
+                    
+            {path:'newyorkstories',component:NewyorktComponent},
         ]
     },
    

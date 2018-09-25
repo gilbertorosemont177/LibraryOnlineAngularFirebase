@@ -1,29 +1,65 @@
 
 <div class="container mt-4">
 
-<h3>New york times stories</h3>
+<!-- <ng-container *ngIf="stories | async; else elseTemplate">
+    
+    <h3>New york times stories</h3>
+    <div *ngFor=" let item of stories  ; let i=index" > 
+
+        <h3>{{item.section}}</h3>
+      
+        <div class="comment-content col-md-11 col-sm-10 col-12 mb-3 ">
+          <h6 class="small comment-meta"><a href="#">{{item.byline}}</a> {{item.created_date}}</h6>
+          <div class="comment-body">
+              <p>{{item.abstract}}
+      
+                  
+                  <br>
+                  <a href="{{item.url}}" class="text-right small"><i class="ion-reply"></i> link to the new  </a> 
+              </p>
+             <img style="width: 250px; height: 200px" src={{images[i]}} alt=""/>  
+          </div>
+      </div>
+      </div>
 
 
-<div *ngFor=" let item of stories ; let i=index" > 
-
-  <h3>{{item.section}}</h3>
-
-  <div class="comment-content col-md-11 col-sm-10 col-12 mb-3 ">
-    <h6 class="small comment-meta"><a href="#">{{item.byline}}</a> {{item.created_date}}</h6>
-    <div class="comment-body">
-        <p>{{item.abstract}}
-
-            
-            <br>
-            <a href="{{item.url}}" class="text-right small"><i class="ion-reply"></i> link to the new  </a> ç
-        </p>
-        <img style="width: 250px; height: 200px" src={{images[i]}} alt=""/>  
-    </div>
-</div>
-</div>
+</ng-container>
+<ng-template #elseTemplate>
+    
+    <div class="loader"></div>
 
 
+</ng-template> --> 
+
+<!-- <div *ngIf="stories | async; else loading"> -->
 
 
+    <!-- //  <div *ngFor="let item of stories | async ">  -->
+
+                <!-- <a href="{{item.url}}" class="text-right small"><i class="ion-reply"></i> link to the new  </a>  -->
+              
+                <!-- <div class="comment-content col-md-11 col-sm-10 col-12 mb-3 ">
+                  <h6 class="small comment-meta"><a href="#">{{item.results[i].byline}}</a> {{item.results.created_date}}</h6>
+                  <div class="comment-body">
+                      <p>{{item.results[i].abstract}}
+              
+                          
+                          <br>
+                          <a href="{{item.results.url}}" class="text-right small"><i class="ion-reply"></i> link to the new  </a> 
+                      </p>
+                     
+              </div> -->
+              <!-- </div> -->
+
+
+<!-- </div>
+
+<ng-template #loading>
+    
+        <div class="loader"></div>
+    
+    
+    </ng-template>   -->
+    <h1>hello new york component</h1>
 
 </div>

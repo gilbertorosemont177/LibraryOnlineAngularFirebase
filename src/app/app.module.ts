@@ -31,6 +31,8 @@ import {FIREBASECONFIG  } from "./../FIREBASECONFIG/firebase.config";
 //services
 import { BooksService } from "./component/books/books.service";
 import { HomeUserService } from './component/homeuser/homeuser.service';
+import { HomeService } from './component/home/homeservice.service';
+
 
 import {LoginServiceFireBase  } from "./component/login/login.service";
 import { NewYorkService } from "./component/newyorkt/newyork.service";
@@ -79,7 +81,7 @@ import { MybooksComponent } from './component/mybooks/mybooks.component';
     AngularFirestoreModule,
  
   ],
-  providers: [BooksService,LoginServiceFireBase,NewYorkService,HomeUserService],
+  providers: [HomeService,BooksService,LoginServiceFireBase,NewYorkService,HomeUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

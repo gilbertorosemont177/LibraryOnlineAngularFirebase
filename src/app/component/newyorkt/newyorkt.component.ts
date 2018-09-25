@@ -20,11 +20,9 @@ export class NewyorktComponent implements OnInit {
 
   constructor(private fr:ActivatedRoute,private service: HomeUserService,private router:Router,private apiNy:NewYorkService,private serviceHome:HomeUserService) { 
     this.serviceHome.saveChildrenUrl(this.router.url.toString())
-  
   }
-
   ngOnInit() {
-    this.router.navigate(['./newyorkstories'],{relativeTo:this.fr})
+    
    console.log("component neyork times")
   
     this.apiNy.getStoriesNYApi()

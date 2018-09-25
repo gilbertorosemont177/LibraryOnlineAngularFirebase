@@ -15,6 +15,9 @@ import { NavbarComponent } from "./component/shared/navbar/navbar.component";
 import { NewyorktComponent } from './component/newyorkt/newyorkt.component';
 import { DisplayoptionsComponent } from './component/displayoptions/displayoptions.component';
 import {MybooksComponent} from './component/mybooks/mybooks.component'
+import { PagenotfoundComponent } from './component/pagenotfound/pagenotfound.component';
+
+
  // import { PageNotFoundComponent } from './';
 
 const APP_ROUTES: Routes = [
@@ -44,8 +47,10 @@ const APP_ROUTES: Routes = [
     ]
     },
     {path:'waiting',component:WaitingComponent},
-    {path:'account',component:ConfirmationemailComponent}
+    {path:'account',component:ConfirmationemailComponent},
 
+    {path: '404', component: PagenotfoundComponent},
+   {path: '**', redirectTo: '/404'}
     // { path: '**', component: PageNotFoundComponent },
 
     //{ path: 'path/:routeParam', component: MyComponent },

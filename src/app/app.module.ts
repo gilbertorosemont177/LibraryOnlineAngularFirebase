@@ -42,6 +42,8 @@ import { SigninupComponent } from './component/signinup/signinup.component';
 import { NewyorktComponent } from './component/newyorkt/newyorkt.component';
 import { DisplayoptionsComponent } from './component/displayoptions/displayoptions.component';
 import { MybooksComponent } from './component/mybooks/mybooks.component';
+import { PagenotfoundComponent } from './component/pagenotfound/pagenotfound.component';
+
 
 
 
@@ -63,7 +65,9 @@ import { MybooksComponent } from './component/mybooks/mybooks.component';
     SigninupComponent,
     NewyorktComponent,
     DisplayoptionsComponent,
-    MybooksComponent
+    MybooksComponent,
+    
+    PagenotfoundComponent
   
   ],
   imports: [

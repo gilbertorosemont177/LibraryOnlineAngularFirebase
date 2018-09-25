@@ -15,43 +15,27 @@ export class HomeuserComponent implements OnInit {
   indexlast:number;
   username:string;
   imgUser:string;
-  constructor(private aroute:ActivatedRoute, private service: HomeUserService, private cnxrouter:Router,private firestoreBase:LoginServiceFireBase, private authentification:AngularFireAuth
-
-  )
-  { 
+  constructor(private aroute:ActivatedRoute, private service: HomeUserService, private cnxrouter:Router,private firestoreBase:LoginServiceFireBase, private authentification:AngularFireAuth)
+  { }
+  private routevisited:string
+  ngOnInit() {
+ 
     this.authentification.authState.subscribe((user)=>{
       if(user){
         this.username=user.displayName
         this.firestoreBase.changeTitle().emit(user.email)
         this.username=user.displayName
         this.imgUser=user.photoURL
-        
-      //  this.cnxrouter.navigate(["./listemybooks"])
-        
       }
-      // else{
-      //   this.firestoreBase.changeTitle().emit("Se connecter/S'inscrire")
-      // }
+      else{
+        this.cnxrouter.navigate(['/home'])
+      }
+      
     })
   }
-  private routevisited:string
-  ngOnInit() {
-//     this.indexlast= this.service.getlistUrl().length
-   
-  
-    
- 
-  
-
-}
-    logout():void{
+  logout():void{
 
         this.firestoreBase.signOut()
 
     }
-    test(){
-      console.log(" test")
-    }
-    
- 
 }

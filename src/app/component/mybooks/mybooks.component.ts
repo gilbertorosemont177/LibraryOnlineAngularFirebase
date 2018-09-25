@@ -17,7 +17,7 @@ export class MybooksComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.navigate(['./listemybooks'],{relativeTo:this.ar})
+   
     console.log("component my books")
    
    

@@ -35,20 +35,20 @@ export class LoginComponent implements OnInit {
          
          if(user.user.emailVerified==true){
            
-            var newUserBook:UserBooks= {
+        /*    var newUserBook:UserBooks= {
                email:user.user.email,
                emailverified:true,
                img:user.user.photoURL,
                provider:null,
                uid:user.user.uid,
                username:user.user.displayName
-            }
+            }*/
 
             console.log("TEST DE QUERY FIREBASESTORE")
-            this.loginservice.userExist(user.user.email)
+            let gt="zelda@yun.com"
+            this.loginservice.userExist(gt)
             //this.loginservice.addUserFireStoreCloud(newUserBook)
             
-   
          this.router.navigate(['/waiting'])
           setTimeout(()=>{
    

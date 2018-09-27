@@ -16,8 +16,8 @@ export class LoginServiceFireBase {
       cnxfirecloud.add(u)
     }
     public userExist(email){
-     let cnxfirecloud=  this.fireDatabase.firestore.
-                            collection('usersbooks').where('email','==',email).get().then((res:any)=>console.log(res))
+     let cnxfirecloud=  this.fireDatabase.
+                            collection('usersbooks',ref=>ref.where('email' ,'==',email)).valueChanges().subscribe((result)=>console.log(result))
     }
 
     public login( username:string,password:string):Promise<firebase.auth.UserCredential>{

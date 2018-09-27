@@ -3,7 +3,6 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { LoginServiceFireBase } from "./../login/login.service";
 import { Router,ActivatedRoute } from '@angular/router';
 import { HomeUserService } from '../homeuser/homeuser.service';
-
 @Component({
   selector: 'app-homeuser',
   templateUrl: './homeuser.component.html',
@@ -19,12 +18,12 @@ export class HomeuserComponent implements OnInit {
   { }
   private routevisited:string
   ngOnInit() {
- console.log("HOME USER COMPONENT")
+    console.log("HOME USER COMPONENT")
     console.log(this.service.getlistUrl())
     this.authentification.authState.subscribe((user)=>{
       if(user){
         this.username=user.displayName
-        this.firestoreBase.changeTitle().emit(user.email)
+       // this.firestoreBase.changeTitle().emit(user.email)
         this.username=user.displayName
         this.imgUser=user.photoURL
         if(this.service.getlistUrl().length>0){
@@ -33,6 +32,7 @@ export class HomeuserComponent implements OnInit {
         }
       }
       else{
+        
         this.cnxrouter.navigate(['/home'])
       }
       

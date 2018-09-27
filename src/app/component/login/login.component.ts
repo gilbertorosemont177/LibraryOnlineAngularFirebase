@@ -1,41 +1,29 @@
-import { Component, OnInit,HostBinding,OnDestroy } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { LoginServiceFireBase  } from "./login.service";
 import {FormControl, Validators} from '@angular/forms';
 import { AngularFireAuth } from "angularfire2/auth";
 import { Router,ActivatedRoute, NavigationEnd } from '@angular/router';
 import * as firebase from 'firebase';
+import { UserBooks } from '../inscription/user.model';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit,OnDestroy {
+export class LoginComponent implements OnInit {
   hide:boolean=true
   msg:string;
   url:string;
   providersGF:string
   msgvalidatorsf:string;
   navigationSubscription
-  constructor(private acr:ActivatedRoute, private router:Router,private cnxcurrentuser:AngularFireAuth,private loginservice:LoginServiceFireBase) {
+  constructor(private acr:ActivatedRoute, private router:Router,private cnxcurrentuser:AngularFireAuth,private loginservice:LoginServiceFireBase) {}
 
-  
-   
-  }
-
-  ngOnInit() {
-    
-
-            
-  }
-  ngOnDestroy() {
-    // avoid memory leaks here by cleaning up after ourselves. If we  
-    // don't then we will continue to run our initialiseInvites()   
-    // method on every navigationEnd event.
-    if (this.navigationSubscription) {  
-       this.navigationSubscription.unsubscribe();
-    }
-  }
-
+  ngOnInit() {  }
+ 
+  msgemaildontverified:string
   ValidationFieldsLogin():boolean{
 
     return(this.email.invalid || this.email.invalid)?true:false
@@ -43,11 +31,23 @@ export class LoginComponent implements OnInit,OnDestroy {
   // login firebase
   loginfb(username:string,password:string){
   if(!this.ValidationFieldsLogin()){
-    this.loginservice.login(username,password).then(
-        
-      (user)=>{
+    this.loginservice.login(username,password).then((user)=>{
          
          if(user.user.emailVerified==true){
+           
+            var newUserBook:UserBooks= {
+               email:user.user.email,
+               emailverified:true,
+               img:user.user.photoURL,
+               provider:null,
+               uid:user.user.uid,
+               username:user.user.displayName
+            }
+
+            console.log("TEST DE QUERY FIREBASESTORE")
+            this.loginservice.userExist(user.user.email)
+            //this.loginservice.addUserFireStoreCloud(newUserBook)
+            
    
          this.router.navigate(['/waiting'])
           setTimeout(()=>{
@@ -60,7 +60,12 @@ export class LoginComponent implements OnInit,OnDestroy {
              }, 3000)
        }
        else{
-         this.router.navigate(['/login'])
+         this.msgemaildontverified=" Vous n'avez pas encore activé votre compte vous devez vérifier votre email"
+
+         this.router.navigate(['./signinup/login'])
+         this.email.setValue("")
+         this.password.setValue("")
+         this.loginservice.signOutCompteFirebase()
        }
      }
          
@@ -95,8 +100,10 @@ export class LoginComponent implements OnInit,OnDestroy {
             '';
   }
   hidePassword(){
+    
     this.hide=!this.hide
   }
+  
 
   //login with facebook
   loginWithFbook(){
@@ -143,9 +150,11 @@ export class LoginComponent implements OnInit,OnDestroy {
       
       //localStorage.setItem('provider','facebook')
       // localStorage.setItem('web','books')
+
       
-         window.location.href="./succes/listemybooks"
-        // this.router.navigate(['./succes']);
+      console.log(result.user)
+        window.location.href="./succes/listemybooks"
+         //this.router.navigate(['./succes'],{relativeTo:this.acr});
         
       
       

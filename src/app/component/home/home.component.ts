@@ -31,9 +31,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    let gt=this.srvc.getCollectionUsers().valueChanges() .forEach((p)=>{
-      console.log(p)
-    })
+    // let gt=this.srvc.getCollectionUsers().valueChanges() .forEach((p)=>{
+    //   console.log(p)
+    // })
    
   
    

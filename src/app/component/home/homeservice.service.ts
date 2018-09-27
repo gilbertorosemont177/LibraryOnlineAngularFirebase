@@ -10,7 +10,7 @@ export class HomeService {
         
     getCollectionUsers(){
 
-        return this.afc.collection('users')
+        //return this.afc.collection('users')
     }
 
 

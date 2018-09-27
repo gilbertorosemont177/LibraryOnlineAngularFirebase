@@ -53,7 +53,7 @@ else{
 } 
   }
   
-  email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z@._]+$')]);
+  email = new FormControl('', [Validators.required, Validators.email,Validators.pattern('^[a-zA-Z@._0-9]+$')]);
   password= new FormControl('',[Validators.required,Validators.minLength(6)])
   
   cpassword= new FormControl('', [Validators.required])

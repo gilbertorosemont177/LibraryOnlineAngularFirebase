@@ -49,8 +49,8 @@ const APP_ROUTES: Routes = [
     {path:'waiting',component:WaitingComponent},
     {path:'account',component:ConfirmationemailComponent},
 
-    {path: '404', component: PagenotfoundComponent},
-   {path: '**', redirectTo: '/404'}
+//     {path: '404', component: PagenotfoundComponent},
+//    {path: '**', redirectTo: '/404'}
     
 ];
 

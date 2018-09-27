@@ -19,8 +19,7 @@ export class MybooksComponent implements OnInit {
   ngOnInit() {
    
     console.log("component my books")
-   
-   
+  
   }
 
 }

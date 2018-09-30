@@ -5,6 +5,7 @@ import { AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument  }
 import { Observable } from 'rxjs';
 import { HomeUserService } from "../homeuser/homeuser.service";
 import { UserBooks } from '../inscription/user.model';
+import { delay, map } from 'rxjs/operators';
 @Injectable()
 export class LoginServiceFireBase {
    private logintitle= new EventEmitter<string>()
@@ -15,10 +16,22 @@ export class LoginServiceFireBase {
       let cnxfirecloud=  this.fireDatabase.firestore.collection('usersbooks')
       cnxfirecloud.add(u)
     }
-    public userExist(email){
-     let cnxfirecloud=  this.fireDatabase.
-                            collection('usersbooks',ref=>ref.where('email' ,'==',email)).valueChanges().subscribe((result)=>console.log(result))
+    public  userExist(email){
+                   
+        return new Promise((resolve,reject)=>{
+           
+            let cnxfirecloud=   this.fireDatabase.
+            collection('usersbooks',ref=>ref.where('email' ,'==',email))
+            .valueChanges().subscribe( ((result)=>{
+                console.log("result promise user exist :" +result.length)
+                resolve(result.length) 
+                    }) )
+           
+            
+        })
     }
+    
+
 
     public login( username:string,password:string):Promise<firebase.auth.UserCredential>{
          
@@ -33,34 +46,12 @@ export class LoginServiceFireBase {
        localStorage.clear()
      
     this.cnxService.clearHistory()
-        this.cnx.auth.signOut().then(()=>{
-            
-            console.log("SignOut")
-        }).catch(()=>{
-
-            console.log("Erreur")
-
-        })
+        this.cnx.auth.signOut()
        
         this.changeTitle().emit("Se connecter/S'inscrire")
-        this.router.navigate(['/home'])
+        window.location.href="./home"
         
 
-    }
-    public signOutCompteFirebase(){
-        localStorage.clear()
-     
-    this.cnxService.clearHistory()
-        this.cnx.auth.signOut().then(()=>{
-            
-            console.log("SignOut")
-        }).catch(()=>{
-
-            console.log("Erreur")
-
-        })
-       
-        this.changeTitle().emit("Se connecter/S'inscrire")
     }
 
     public changeTitle():EventEmitter<string>{

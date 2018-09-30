@@ -23,49 +23,57 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {  }
  
-  msgemaildontverified:string
-  ValidationFieldsLogin():boolean{
+ 
+  //UseExist Async / this function use the  userExist method from loginservice wich return a Promise 
+  emailresgistered:any
+  public async emailRegisteredinFbase(email){
+    const responseasync= await this.loginservice.userExist(email)
+    this.emailresgistered=responseasync
 
-    return(this.email.invalid || this.email.invalid)?true:false
+    
   }
-  // login firebase
+// login firebase
   loginfb(username:string,password:string){
   if(!this.ValidationFieldsLogin()){
     this.loginservice.login(username,password).then((user)=>{
-         
+     
          if(user.user.emailVerified==true){
            
-        /*    var newUserBook:UserBooks= {
-               email:user.user.email,
-               emailverified:true,
-               img:user.user.photoURL,
-               provider:null,
-               uid:user.user.uid,
-               username:user.user.displayName
-            }*/
+          this.emailRegisteredinFbase(user.user.email)
+          setTimeout(() => {
+            if(this.emailresgistered<1){
+              let newuser:UserBooks={
 
-            console.log("TEST DE QUERY FIREBASESTORE")
-            let gt="zelda@yun.com"
-            this.loginservice.userExist(gt)
-            //this.loginservice.addUserFireStoreCloud(newUserBook)
-            
-         this.router.navigate(['/waiting'])
+                  email:user.user.email,
+                  uid:user.user.uid,
+                  emailverified:user.user.emailVerified,
+                  img:user.user.photoURL,
+                  provider:"",
+                  username:user.user.displayName
+
+              }
+              this.loginservice.addUserFireStoreCloud(newuser)
+            }
+            else{
+              console.log("it exist in BD")
+            }
+          }, 2000);
+          
+          this.router.navigate(['/waiting'])
           setTimeout(()=>{
    
-                this.router.navigate(['/succes']) 
-   
-       localStorage.setItem('web','books')
+                this.router.navigate(['/succes/listemybooks']) 
+               localStorage.setItem('web','books')
                 this.loginservice.changeTitle().emit(user.user.email)
                 
              }, 3000)
        }
        else{
          this.msgemaildontverified=" Vous n'avez pas encore activé votre compte vous devez vérifier votre email"
-
          this.router.navigate(['./signinup/login'])
          this.email.setValue("")
          this.password.setValue("")
-         this.loginservice.signOutCompteFirebase()
+         this.loginservice.signOut()
        }
      }
          
@@ -84,6 +92,11 @@ export class LoginComponent implements OnInit {
   }
 
      
+  }
+  msgemaildontverified:string
+  ValidationFieldsLogin():boolean{
+
+    return(this.email.invalid || this.email.invalid)?true:false
   }
 
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -116,7 +129,6 @@ export class LoginComponent implements OnInit {
     firebase.auth().signInWithPopup(providerFacebook).then((result)=>{
      if(result.user){
        localStorage.setItem('provider','facebook')
-       //localStorage.setItem('web','books')
         this.router.navigate(['/succes/listemybooks']) 
       
     }
@@ -145,18 +157,12 @@ export class LoginComponent implements OnInit {
       
    });
     firebase.auth().signInWithPopup(providerGoogle).then((result)=> {
-     
+      
     if(result.user){ 
+      this.emailRegisteredinFbase(result.user.email)
       
-      //localStorage.setItem('provider','facebook')
-      // localStorage.setItem('web','books')
-
-      
-      console.log(result.user)
-        window.location.href="./succes/listemybooks"
-         //this.router.navigate(['./succes'],{relativeTo:this.acr});
-        
-      
+      window.location.href="./succes/listemybooks"
+    
       
     }
   }).catch((error) =>{

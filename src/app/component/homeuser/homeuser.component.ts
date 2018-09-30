@@ -3,6 +3,7 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { LoginServiceFireBase } from "./../login/login.service";
 import { Router,ActivatedRoute } from '@angular/router';
 import { HomeUserService } from '../homeuser/homeuser.service';
+import { UserBooks } from '../inscription/user.model';
 @Component({
   selector: 'app-homeuser',
   templateUrl: './homeuser.component.html',
@@ -14,13 +15,45 @@ export class HomeuserComponent implements OnInit {
   indexlast:number;
   username:string;
   imgUser:string;
-  constructor(private aroute:ActivatedRoute, private service: HomeUserService, private cnxrouter:Router,private firestoreBase:LoginServiceFireBase, private authentification:AngularFireAuth)
+  constructor( private service: HomeUserService, private cnxrouter:Router,private firestoreBase:LoginServiceFireBase, private authentification:AngularFireAuth)
   { }
   private routevisited:string
+  private emailresgitered:any
+
+  //fonction async temp , eventually i place this async temp in service
+  private async resolveAsyncUserExist(email){
+    const result= await this.firestoreBase.userExist(email)
+    this.emailresgitered=result
+  }
+
   ngOnInit() {
     console.log("HOME USER COMPONENT")
     console.log(this.service.getlistUrl())
+   
     this.authentification.authState.subscribe((user)=>{
+      this.resolveAsyncUserExist(user.email)
+if(localStorage.getItem('provider')){
+      setTimeout(() => {
+        if(this.emailresgitered<1){
+          let newuser:UserBooks={
+
+              email:user.email,
+              uid:user.uid,
+              emailverified:user.emailVerified,
+              img:user.photoURL,
+              provider:"",
+              username:user.displayName
+
+          }
+          this.firestoreBase.addUserFireStoreCloud(newuser)
+        }
+        else{
+          console.log("it exist in BD")
+        }
+        
+      }, 500);
+
+    }
       if(user){
         this.username=user.displayName
        // this.firestoreBase.changeTitle().emit(user.email)
@@ -30,6 +63,7 @@ export class HomeuserComponent implements OnInit {
           let lastroute= this.service.getlistUrl()[this.service.getlistUrl().length-1]
             this.cnxrouter.navigate([lastroute])
         }
+        
       }
       else{
         

@@ -15,10 +15,10 @@ export class SigninupComponent implements OnInit {
   }
 
   ngOnInit() {
-   //verifier sil ya connecte 
+  // verifier sil ya connecte 
     let user = this.cnx.auth.currentUser;
     
-    if(user && localStorage.length>0){
+    if(user){
         if(this.providersGF!=''){
           this.router.navigate(['/succes'])
         }
@@ -29,12 +29,12 @@ export class SigninupComponent implements OnInit {
             
           }
         }
-        else{
-          this.providersfg.changeTitle().emit("Se connecter/S'inscrire")
-        }
+    // else{
+    //     this.providersfg.changeTitle().emit("Se connecter/S'inscrire")
+    //   }
   }
 
-
+//children routes
   signIn():void{
     this.router.navigate(['./login'],{relativeTo:this.aroute})
 

@@ -7,10 +7,13 @@
     margin:auto
 
 }
-  .header-img {
-    background-image: url('../../../assets/images/narutomanga.jpg');
-    background-size: cover
-  }
+   .header-img {
+   
+    background-size: cover;
+    width: 45px;
+    height: 45px;
+    
+  } 
   .bookspictures{
     height:  250px  ;
     width: 200px;

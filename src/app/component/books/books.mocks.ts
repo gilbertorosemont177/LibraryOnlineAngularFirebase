@@ -1,78 +1,90 @@
 import { Books } from "./books.interface";
 
+
 export const LISTEBOOKS:Books[]=
 
 [
     {
         id:0,
-        titre:"books python",
-        description:" interessant  python books",
-        image: "./../../../assets/images/HeadFirstPython.jpg"
+        titre:"python revolution",
+        auteur:"Jr dos santos",
+        image: "./../../../assets/images/HeadFirstPython.jpg",
+        description:" best book about python",
+        datedisponible:null,
+        disponible:true,
+        reserve:false
 
     },
 
     {
         id:1,
         titre:"books Android",
-        description:" interessant Android book",
-        image: "./../../../assets/images/Android.jpg"
+        auteur:"Mr. Android",
+        description:" very interesting Android book",
+        image: "./../../../assets/images/Android.jpg",
+        datedisponible:null,
+        disponible:true,
+        reserve:false
 
     },
     {
 
         id:2,
         titre:"books batman",
-        description:" interessant comic batman",
-        image: "./../../../assets/images/batmacomic.jpg"
+        auteur:"Robin Robinson",
+        description:" very interesting  batman comic",
+        image: "./../../../assets/images/batmacomic.jpg",
+        datedisponible:null,
+        disponible:true,
+        reserve:false
 
     }
 ,{
 
     id:3,
     titre:"books Javascript",
-    description:" interessant javascript book",
-    image: "./../../../assets/images/javascript.jpg"
+    auteur:"Charlot Torres",
+    description:" very interesting  javascript book",
+    image: "./../../../assets/images/javascript.jpg",
+    datedisponible:null,
+        disponible:true,
+        reserve:false
 
 }
 ,{
 
     id:4,
     titre:"books naruto manga",
-    description:" interessant comic batman",
-    image: "./../../../assets/images/narutomanga.jpg"
+    auteur:"Akira Toriyama",
+    description:" very interesting  manga",
+    image: "./../../../assets/images/narutomanga.jpg",
+    datedisponible:null,
+    disponible:true,
+    reserve:false
 
 },
 {
 
     id:5,
     titre:"books Programmation for dummies",
+    auteur:"Fernando Torres",
     description:" interessant programming book",
-    image: "./../../../assets/images/dummies.jpg"
+    image: "./../../../assets/images/dummies.jpg",
+    datedisponible:null,
+    disponible:true,
+    reserve:false
 
 }
 ,{
 
     id:6,
     titre:"books science",
+    auteur:"Nicolas Tesla",
     description:" interessant science boook",
-    image: "./../../../assets/images/science.jpg"
-
-},
-{
-
-    id:7,
-    titre:"books python",
-    description:" interessant  python books",
-    image: "./../../../assets/images/HeadFirstPython.jpg"
-
-
-}
-,{
-
-    id:8,
-    titre:"books Android",
-        description:" interessant Android book",
-        image: "./../../../assets/images/Android.jpg"
+    image: "./../../../assets/images/science.jpg",
+    datedisponible:null,
+    disponible:true,
+    reserve:false
 
 }
 

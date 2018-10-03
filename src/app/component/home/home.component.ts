@@ -6,6 +6,8 @@ import { LoginServiceFireBase } from "../login/login.service";
 import { AngularFireAuth } from "angularfire2/auth";
 import { elementStyleProp } from '@angular/core/src/render3/instructions';
 import { HomeService } from './homeservice.service';
+
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser'
 interface users{
   email:string
   uid:string
@@ -22,19 +24,19 @@ export class HomeComponent implements OnInit {
 
   effetcss:string
   cnxuser:boolean
-  listebooks:Books[]
-  constructor(private srvc:HomeService,private servicelogin:LoginServiceFireBase ,private usercnx:AngularFireAuth ,private ListeB:BooksService, private route:Router) { 
+  listebooks
+  constructor(private _sanitizer:DomSanitizer,private srvc:HomeService,private servicelogin:LoginServiceFireBase ,private usercnx:AngularFireAuth ,private ListeB:BooksService, private route:Router) { 
    
-   this.getAllBooks() 
+   //this.getAllBooks() 
    
   }
 
   ngOnInit() {
-
+  
     // let gt=this.srvc.getCollectionUsers().valueChanges() .forEach((p)=>{
     //   console.log(p)
     // })
-   
+   this.listebooks=this.ListeB.getBooksFromFs()
   
    
 
@@ -51,17 +53,21 @@ export class HomeComponent implements OnInit {
     
   }
 
-  getAllBooks():Books[]{
-  this.ListeB.getBooks().then(result=> this.listebooks = result);
+  // getAllBooks():Books[]{
+  // this.ListeB.getBooks().then(result=> this.listebooks = result);
 
-    return this.listebooks;
+  //   return this.listebooks;
 
-  }
+  // }
 
 
   infoBookbyId(id:number):void{
 
       this.route.navigate(['/bookdetail',id])
+  }
+  getBackground(img){
+    return this._sanitizer.bypassSecurityTrustStyle(`url(${img})`);
+
   }
 
 }

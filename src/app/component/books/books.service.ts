@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Books } from './books.interface';
 import {LISTEBOOKS  } from "./books.mocks";
-
+import { AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument } from 'angularfire2/firestore';
 
 @Injectable()
 export class BooksService {
+
+    constructor( private fs:AngularFirestore ){
+
+    }
 
      public getBooks():Promise<Books[]>{
 
@@ -16,6 +20,16 @@ export class BooksService {
             return LISTEBOOKS.find (b=>b.id===id);
         }
 
+public getBooksFromFs(){
+
+    return this.fs.collection("books").valueChanges();
+    //get().then((querySnapshot) => {
+        // querySnapshot.forEach((doc) => {
+        //     console.log(`${doc.id} => ${doc.data()}`);
+        // });
+    //});
+
+}
 
         public getBookInfo(bookname:string ): Books []
          {

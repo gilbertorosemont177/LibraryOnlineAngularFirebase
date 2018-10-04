@@ -1,0 +1,41 @@
+.card-size {
+    max-width: 320px;
+  }
+  
+  .container{
+    max-width: 80%;
+    margin:auto
+
+}
+   .header-img {
+   
+    background-size: cover;
+    width: 45px;
+    height: 45px;
+    
+  } 
+  .bookspictures{
+    height:  150px  ;
+    width: 150px;
+   
+   
+  }
+  .imgscenter{
+    text-align: center!important;
+       
+  }
+  .imgbookscontents{
+
+    
+    width:  100%
+  }
+  p{
+    font-size: 95%
+  }
+.iconss{
+    color:white!important
+}
+.button-row button,
+.button-row a {
+  margin-right: 4px;
+}

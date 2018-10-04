@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeUserService } from "../homeuser/homeuser.service";
 import { Router,ActivatedRoute } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { BooksService } from '../books/books.service';
+import {DomSanitizer} from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-mybooks',
@@ -10,16 +14,38 @@ import { Router,ActivatedRoute } from '@angular/router';
 export class MybooksComponent implements OnInit {
 
   valuelast;
-  constructor(private ar:ActivatedRoute,private router:Router,private serviceHome:HomeUserService) { 
+  mybooks
+  constructor(private _sanitizer:DomSanitizer,private bsrvc:BooksService,private usercnx:AngularFireAuth,private ar:ActivatedRoute,private router:Router,private serviceHome:HomeUserService) { 
    
     this.serviceHome.saveChildrenUrl(this.router.url.toString())
-    // console.log("thi mybooks component"+this.router.url.toString())
+    
   }
 
   ngOnInit() {
    
-    console.log("component my books")
+
+    this.usercnx.authState.subscribe((res)=>{
+
+      if(localStorage.getItem('uid')==null){
+          this.bsrvc.getUserUID(res.email)
+ 
+        }else{
+        console.log('existe deja USERID')
+      }
+
+
+
+})
+
+setTimeout(() => {
+ let uid=localStorage.getItem('useruid')
+  this.mybooks=this.bsrvc.getMyLibrary(uid)
+}, 500);
   
+  }
+  getBackground(img){
+    return this._sanitizer.bypassSecurityTrustStyle(`url(${img})`);
+
   }
 
 }

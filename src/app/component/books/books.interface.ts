@@ -8,7 +8,7 @@
 // }
 
 export interface Books{
-
+        key?:string;
         id:number;
         titre:string;
         auteur:string;

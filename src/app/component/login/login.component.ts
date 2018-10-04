@@ -5,6 +5,7 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { Router,ActivatedRoute, NavigationEnd } from '@angular/router';
 import * as firebase from 'firebase';
 import { UserBooks } from '../inscription/user.model';
+import { BooksService } from '../books/books.service';
 
 
 @Component({
@@ -61,12 +62,14 @@ export class LoginComponent implements OnInit {
           
           this.router.navigate(['/waiting'])
           setTimeout(()=>{
-   
+            
                 this.router.navigate(['/succes/listemybooks']) 
                localStorage.setItem('web','books')
+               
                 this.loginservice.changeTitle().emit(user.user.email)
                 
              }, 3000)
+             
        }
        else{
          this.msgemaildontverified=" Vous n'avez pas encore activé votre compte vous devez vérifier votre email"
@@ -157,11 +160,13 @@ export class LoginComponent implements OnInit {
       
    });
     firebase.auth().signInWithPopup(providerGoogle).then((result)=> {
-      
+      let em=result.user.email.toString()
+    
     if(result.user){ 
-      this.emailRegisteredinFbase(result.user.email)
-      
-      window.location.href="./succes/listemybooks"
+      this.emailRegisteredinFbase(em)
+     
+       window.location.href="./succes/listemybooks"
+     
     
       
     }

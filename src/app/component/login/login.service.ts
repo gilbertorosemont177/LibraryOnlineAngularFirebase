@@ -5,7 +5,8 @@ import { AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument  }
 import { Observable } from 'rxjs';
 import { HomeUserService } from "../homeuser/homeuser.service";
 import { UserBooks } from '../inscription/user.model';
-import { delay, map } from 'rxjs/operators';
+
+
 @Injectable()
 export class LoginServiceFireBase {
    private logintitle= new EventEmitter<string>()
